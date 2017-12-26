@@ -304,8 +304,8 @@
     Name="LastUpdateDate"
     ColumnName="LAST_UPDATE_DATE"
     SQLType="TIMESTAMP"
-    Type="oracle.jbo.domain.Date"
-    ColumnType="DATE"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="TIMESTAMP"
     TableName="PWC_ED_REMITTANCE_LINE">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="7"/>
@@ -326,8 +326,8 @@
     Name="CreationDate"
     ColumnName="CREATION_DATE"
     SQLType="TIMESTAMP"
-    Type="oracle.jbo.domain.Date"
-    ColumnType="DATE"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="TIMESTAMP"
     TableName="PWC_ED_REMITTANCE_LINE">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="7"/>

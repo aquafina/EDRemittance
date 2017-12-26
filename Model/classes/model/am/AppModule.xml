@@ -96,9 +96,6 @@
       <Parameter
         Name="respAppl"
         Type="java.lang.String"/>
-      <Parameter
-        Name="mfgOrgId"
-        Type="java.lang.String"/>
     </Method>
   </ClientInterface>
 </AppModule>

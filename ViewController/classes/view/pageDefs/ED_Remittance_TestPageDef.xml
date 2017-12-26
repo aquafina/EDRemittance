@@ -15,7 +15,8 @@
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="EDRemittanceVO3Iterator"
                   id="EDRemittanceVOCriteriaQuery"/>
-    <invokeAction Binds="setSessionValues" id="setSessionValuesAction"/>
+    <invokeAction Binds="setSessionValues" id="setsessionValuesAction"
+                  Refresh="always"/>
   </executables>
   <bindings>
     <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
@@ -94,8 +95,6 @@
       <NamedData NDName="respId" NDValue="#{viewScope.RespId}"
                  NDType="java.lang.String"/>
       <NamedData NDName="respAppl" NDValue="#{viewScope.RespApplId}"
-                 NDType="java.lang.String"/>
-      <NamedData NDName="mfgOrgId" NDValue="#{viewScope.MfgOrgId}"
                  NDType="java.lang.String"/>
     </methodAction>
     <methodAction id="callCreateReceiptProc"

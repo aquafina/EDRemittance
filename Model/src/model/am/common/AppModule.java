@@ -9,5 +9,5 @@ public interface AppModule extends ApplicationModule {
     String callCreateReceiptProc(int sqlReturnType, String stmt);
 
     void setSessionValues(String orgId, String userId, String respId,
-                          String respAppl, String mfgOrgId);
+                          String respAppl);
 }

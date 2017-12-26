@@ -9,6 +9,7 @@ import oracle.adf.share.ADFContext;
 import oracle.jbo.Key;
 import oracle.jbo.domain.Date;
 import oracle.jbo.domain.Number;
+import oracle.jbo.domain.Timestamp;
 import oracle.jbo.server.AttributeDefImpl;
 import oracle.jbo.server.EntityDefImpl;
 import oracle.jbo.server.EntityImpl;
@@ -272,7 +273,7 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
             }
 
             public void put(EDRemittanceLineEOImpl obj, Object value) {
-                obj.setLastUpdateDate((Date)value);
+                obj.setLastUpdateDate((Timestamp)value);
             }
         }
         ,
@@ -292,7 +293,7 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
             }
 
             public void put(EDRemittanceLineEOImpl obj, Object value) {
-                obj.setCreationDate((Date)value);
+                obj.setCreationDate((Timestamp)value);
             }
         }
         ;
@@ -322,6 +323,8 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
             return vals;
         }
     }
+
+
     public static final int REMITTANCELINEID = AttributesEnum.RemittanceLineId.index();
     public static final int REMITTANCEHEADERID = AttributesEnum.RemittanceHeaderId.index();
     public static final int COMMINVNUM = AttributesEnum.CommInvNum.index();
@@ -354,6 +357,17 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
      * This is the default constructor (do not remove).
      */
     public EDRemittanceLineEOImpl() {
+    }
+
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        if (mDefinitionObject == null) {
+            mDefinitionObject = EntityDefImpl.findDefObject("model.eo.EDRemittanceLineEO");
+        }
+        return mDefinitionObject;
     }
 
     /**
@@ -744,15 +758,15 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
      * Gets the attribute value for LastUpdateDate, using the alias name LastUpdateDate.
      * @return the LastUpdateDate
      */
-    public Date getLastUpdateDate() {
-        return (Date)getAttributeInternal(LASTUPDATEDATE);
+    public Timestamp getLastUpdateDate() {
+        return (Timestamp)getAttributeInternal(LASTUPDATEDATE);
     }
 
     /**
      * Sets <code>value</code> as the attribute value for LastUpdateDate.
      * @param value value to set the LastUpdateDate
      */
-    public void setLastUpdateDate(Date value) {
+    public void setLastUpdateDate(Timestamp value) {
         setAttributeInternal(LASTUPDATEDATE, value);
     }
 
@@ -776,15 +790,15 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
      * Gets the attribute value for CreationDate, using the alias name CreationDate.
      * @return the CreationDate
      */
-    public Date getCreationDate() {
-        return (Date)getAttributeInternal(CREATIONDATE);
+    public Timestamp getCreationDate() {
+        return (Timestamp)getAttributeInternal(CREATIONDATE);
     }
 
     /**
      * Sets <code>value</code> as the attribute value for CreationDate.
      * @param value value to set the CreationDate
      */
-    public void setCreationDate(Date value) {
+    public void setCreationDate(Timestamp value) {
         setAttributeInternal(CREATIONDATE, value);
     }
 
@@ -821,6 +835,7 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
         super.setAttrInvokeAccessor(index, value, attrDef);
     }
 
+
     /**
      * @param remittanceLineId key constituent
 
@@ -830,16 +845,6 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
         return new Key(new Object[]{remittanceLineId});
     }
 
-    /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        if (mDefinitionObject == null) {
-            mDefinitionObject = EntityDefImpl.findDefObject("model.eo.EDRemittanceLineEO");
-        }
-        return mDefinitionObject;
-    }
-    
     protected void doDML(int operation, TransactionEvent e) 
     {
         Map sessionScope = ADFContext.getCurrent().getSessionScope();
@@ -853,7 +858,7 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
         {
             try 
             {
-                setLastUpdateDate((Date)Date.getCurrentDate());
+                setLastUpdateDate(new Timestamp(System.currentTimeMillis()));
                 setLastUpdatedBy(new oracle.jbo.domain.Number(user));
             } 
             catch (SQLException f) 
@@ -869,7 +874,7 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
             try 
             {
         //setSampleDocNo(new oracle.jbo.domain.Number(getSrNoString())); 
-                setCreationDate((Date)Date.getCurrentDate());
+                setCreationDate(new Timestamp(System.currentTimeMillis()));
                 setCreatedBy(new oracle.jbo.domain.Number(user)); //RespId 
                 //setRespId(new oracle.jbo.domain.Number(respId)); 
             } 
