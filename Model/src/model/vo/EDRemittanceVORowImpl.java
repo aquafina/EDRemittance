@@ -85,6 +85,16 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
             }
         }
         ,
+        ExchangeRate {
+            public Object get(EDRemittanceVORowImpl obj) {
+                return obj.getExchangeRate();
+            }
+
+            public void put(EDRemittanceVORowImpl obj, Object value) {
+                obj.setExchangeRate((String)value);
+            }
+        }
+        ,
         ExchangeType {
             public Object get(EDRemittanceVORowImpl obj) {
                 return obj.getExchangeType();
@@ -305,16 +315,6 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
             }
         }
         ,
-        ExchangeRate {
-            public Object get(EDRemittanceVORowImpl obj) {
-                return obj.getExchangeRate();
-            }
-
-            public void put(EDRemittanceVORowImpl obj, Object value) {
-                obj.setExchangeRate((String)value);
-            }
-        }
-        ,
         EDRemittanceLinesVO {
             public Object get(EDRemittanceVORowImpl obj) {
                 return obj.getEDRemittanceLinesVO();
@@ -404,6 +404,16 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
                 obj.setAttributeInternal(index(), value);
             }
         }
+        ,
+        RemittanceHeaderIdLOV1 {
+            public Object get(EDRemittanceVORowImpl obj) {
+                return obj.getRemittanceHeaderIdLOV1();
+            }
+
+            public void put(EDRemittanceVORowImpl obj, Object value) {
+                obj.setAttributeInternal(index(), value);
+            }
+        }
         ;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
@@ -438,6 +448,7 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
     public static final int CREATIONDATE = AttributesEnum.CreationDate.index();
     public static final int CURRENCY = AttributesEnum.Currency.index();
     public static final int CUSTOMERID = AttributesEnum.CustomerId.index();
+    public static final int EXCHANGERATE = AttributesEnum.ExchangeRate.index();
     public static final int EXCHANGETYPE = AttributesEnum.ExchangeType.index();
     public static final int EXPORTCATEGORY = AttributesEnum.ExportCategory.index();
     public static final int GLDATE = AttributesEnum.GlDate.index();
@@ -460,7 +471,6 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
     public static final int CUSTOMERBILLTOADDRESS = AttributesEnum.CustomerBillToAddress.index();
     public static final int RECEIPTMETHODNAME = AttributesEnum.ReceiptMethodName.index();
     public static final int OPERATINGUNIT = AttributesEnum.OperatingUnit.index();
-    public static final int EXCHANGERATE = AttributesEnum.ExchangeRate.index();
     public static final int EDREMITTANCELINESVO = AttributesEnum.EDRemittanceLinesVO.index();
     public static final int CUSTOMERNAMELOV1 = AttributesEnum.CustomerNameLOV1.index();
     public static final int CURRENCYLOV1 = AttributesEnum.CurrencyLOV1.index();
@@ -470,6 +480,7 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
     public static final int RECEIPTCATEGORYLOV1 = AttributesEnum.ReceiptCategoryLOV1.index();
     public static final int RECEIPTMETHODSLOV1 = AttributesEnum.ReceiptMethodsLOV1.index();
     public static final int PRCSTATUSLOV1 = AttributesEnum.PrcStatusLOV1.index();
+    public static final int REMITTANCEHEADERIDLOV1 = AttributesEnum.RemittanceHeaderIdLOV1.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -554,7 +565,9 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
      * @return the CUSTOMER_ID
      */
     public Number getCustomerId() {
-        return (Number) getAttributeInternal(CUSTOMERID);
+        if (getAttributeInternal(CUSTOMERID) == null)
+            return new Number(0);
+        else return (Number) getAttributeInternal(CUSTOMERID);
     }
 
     /**
@@ -1011,6 +1024,13 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
      */
     public RowSet getPrcStatusLOV1() {
         return (RowSet)getAttributeInternal(PRCSTATUSLOV1);
+    }
+
+    /**
+     * Gets the view accessor <code>RowSet</code> RemittanceHeaderIdLOV1.
+     */
+    public RowSet getRemittanceHeaderIdLOV1() {
+        return (RowSet)getAttributeInternal(REMITTANCEHEADERIDLOV1);
     }
 
     /**

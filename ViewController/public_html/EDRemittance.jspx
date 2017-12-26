@@ -28,15 +28,8 @@
               <af:gridCell marginStart="5px" width="30%" id="gc20">
                 <af:outputText value="#{bindings.OrgId.inputValue}" id="ot7"
                                rendered="false"/>
-                <af:inputText value="#{bindings.OperatingUnit.inputValue}"
-                              simple="true"
-                              required="#{bindings.OperatingUnit.hints.mandatory}"
-                              columns="#{bindings.OperatingUnit.hints.displayWidth}"
-                              maximumLength="#{bindings.OperatingUnit.hints.precision}"
-                              shortDesc="#{bindings.OperatingUnit.hints.tooltip}"
-                              id="it7" disabled="true">
-                  <f:validator binding="#{bindings.OperatingUnit.validator}"/>
-                </af:inputText>
+                <af:outputText value="#{bindings.OperatingUnit.inputValue}"
+                               id="ot10"/>
               </af:gridCell>
               <af:gridCell marginStart="5px" width="20%" id="gc19">
                 <af:outputLabel value="PRC Number" id="ol10"/>
@@ -297,16 +290,26 @@
                   <af:convertDateTime pattern="#{bindings.GlDate.format}"/>
                 </af:inputDate>
               </af:gridCell>
-              <af:gridCell marginStart="5px" width="20%" id="gridCell6"/>
+              <af:gridCell marginStart="5px" width="20%" id="gridCell6">
+                <af:outputText value="Remittance Number" id="ot12"/>
+              </af:gridCell>
               <af:gridCell id="gridCell7">
+                <af:outputText value="#{bindings.RemittanceHeaderId.inputValue}"
+                               id="ot11"/>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" height="auto" id="gridRow2">
+              <af:gridCell marginStart="5px" width="20%" id="gridCell3"/>
+              <af:gridCell marginStart="5px" width="30%" id="gridCell8"/>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gridCell9"/>
+              <af:gridCell id="gridCell10">
                 <af:commandButton text="New"
                                   disabled="#{!bindings.CreateInsert.enabled}"
                                   id="commandButton1"
                                   actionListener="#{bindings.CreateInsert.execute}"/>
                 <af:commandButton actionListener="#{bindings.Commit.execute}"
-                                  text="Save"
-                                  disabled="false"
-                                  id="cb1"/>
+                                  text="Save" disabled="false" id="cb1"/>
                 <af:commandButton text="Create Receipt" id="commandButton3"
                                   actionListener="#{backingBeanScope.EDRemittanceBean.createReceiptAPIActionListener}"/>
               </af:gridCell>
@@ -316,9 +319,10 @@
                           inlineStyle="width:100%; height:25px; background-color:ActiveCaption;"/>
           <af:commandButton
                             text="New"
-                            disabled="#{bindings.EDRemittanceVO3Iterator.currentRowIndexInRange&lt;0}"
+                            disabled="#{bindings.EDRemittanceVO3Iterator.estimatedRowCount&lt;=0}"
                             id="cb4"
-                            actionListener="#{bindings.CreateInsert1.execute}"/>
+                            actionListener="#{bindings.CreateInsert1.execute}"
+                            partialTriggers="pgl2"/>
           <af:commandButton actionListener="#{bindings.Commit.execute}"
                             text="Save" disabled="false"
                             id="cb5"/>

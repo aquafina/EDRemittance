@@ -16,6 +16,7 @@ public class AppModuleClient extends ApplicationModuleImpl implements AppModule 
     public AppModuleClient() {
     }
 
+
     public String callCreateReceiptProc(int sqlReturnType, String stmt) {
         Object _ret =
             this.riInvokeExportedMethod(this,"callCreateReceiptProc",new String [] {"int","java.lang.String"},new Object[] {new Integer(sqlReturnType), stmt});
@@ -23,9 +24,9 @@ public class AppModuleClient extends ApplicationModuleImpl implements AppModule 
     }
 
     public void setSessionValues(String orgId, String userId, String respId,
-                                 String respAppl) {
+                                 String respAppl, String mfgOrgId) {
         Object _ret =
-            this.riInvokeExportedMethod(this,"setSessionValues",new String [] {"java.lang.String","java.lang.String","java.lang.String","java.lang.String"},new Object[] {orgId, userId, respId, respAppl});
+            this.riInvokeExportedMethod(this,"setSessionValues",new String [] {"java.lang.String","java.lang.String","java.lang.String","java.lang.String","java.lang.String"},new Object[] {orgId, userId, respId, respAppl, mfgOrgId});
         return;
     }
 }

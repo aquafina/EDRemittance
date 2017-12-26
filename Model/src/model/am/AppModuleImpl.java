@@ -21,6 +21,7 @@ import model.am.common.AppModule;
 import model.lov.CommInvNumLOVImpl;
 
 import model.lov.CustomerNameLOVImpl;
+import model.lov.ExchangeRateLOVImpl;
 import model.lov.ReceiptMethodsLOVImpl;
 
 import model.vo.EDRemittanceLineVOImpl;
@@ -81,7 +82,7 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             RowSet lovVO = (RowSet)currentRow.getAttribute("CommInvNumLOV1");
             if (lovVO != null) {
                 lovVO.setNamedWhereClauseParam("P_CUST_ID", custId);   
-                lovVO.setNamedWhereClauseParam("P_ORG_ID", "106");   
+                lovVO.setNamedWhereClauseParam("P_ORG_ID", orgId);   
                 System.out.println("custId = "+custId);
                 System.out.println("orgId = "+orgId);
                 lovVO.executeQuery();
@@ -253,27 +254,14 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     
     
     
-    public void setSessionValues(String orgId, String userId, String respId, String respAppl) {
+    public void setSessionValues(String orgId, String userId, String respId, String respAppl, String mfgOrgId) {
         
-        System.out.println(orgId+" "+userId);
+//        System.out.println(orgId+" "+userId);
         ADFContext.getCurrent().getSessionScope().put("user_id", userId);
         ADFContext.getCurrent().getSessionScope().put("org_id", orgId);
         ADFContext.getCurrent().getSessionScope().put("resp_id", respId);
         ADFContext.getCurrent().getSessionScope().put("resp_appl_id", respAppl);
-        
-        
-/*    if (userId != null) {
-//    String flag = getFlagValue(userId, respId); 
-    //System.out.println("Reps Id -->" + respId); 
-    FacesContext fctx = FacesContext.getCurrentInstance(); 
-    ExternalContext ectx = fctx.getExternalContext();
-    HttpSession userSession = (HttpSession)ectx.getSession(false); 
-//    userSession.setAttribute("Flag", flag); 
-    userSession.setAttribute("userId", userId); 
-    userSession.setAttribute("respId", respId); 
-    userSession.setAttribute("orgId", orgId); 
-    userSession.setAttribute("respAppl", respAppl);
-    }*/
+        ADFContext.getCurrent().getSessionScope().put("mfg_org_id", mfgOrgId);
     }
 
     /**
@@ -300,7 +288,6 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
                 if (rs.next()) {
                     code = (rs.getObject(1).toString());
                 }
-
                 rs.close();
                 return code;
 
@@ -308,4 +295,16 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
                 throw new JboException(e);
             }
         }
+
+    public void setSessionValues(String orgId, String userId, String respId,
+                                 String respAppl) {
+    }
+
+    /**
+     * Container's getter for RemittanceHeaderIdLOV1.
+     * @return RemittanceHeaderIdLOV1
+     */
+    public ViewObjectImpl getRemittanceHeaderIdLOV1() {
+        return (ViewObjectImpl)findViewObject("RemittanceHeaderIdLOV1");
+    }
 }

@@ -11,12 +11,11 @@
     <iterator Binds="EDRemittanceLinesVO3" RangeSize="10"
               DataControl="AppModuleDataControl"
               id="EDRemittanceLinesVO3Iterator"/>
-    <invokeAction Binds="setSessionValues" id="setSessionValuesAction"
-                  Refresh="always"/>
     <searchRegion Criteria="EDRemittanceVOCriteria"
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="EDRemittanceVO3Iterator"
                   id="EDRemittanceVOCriteriaQuery"/>
+    <invokeAction Binds="setSessionValues" id="setSessionValuesAction"/>
   </executables>
   <bindings>
     <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
@@ -86,14 +85,17 @@
                   InstanceName="AppModuleDataControl.dataProvider"
                   DataControl="AppModuleDataControl" RequiresUpdateModel="true"
                   Action="invokeMethod" MethodName="setSessionValues"
-                  IsViewObjectMethod="false">
+                  IsViewObjectMethod="false"
+                  ReturnName="data.AppModuleDataControl.methodResults.setSessionValues_AppModuleDataControl_dataProvider_setSessionValues_result">
       <NamedData NDName="orgId" NDValue="#{viewScope.OrgId}"
                  NDType="java.lang.String"/>
       <NamedData NDName="userId" NDValue="#{viewScope.UserId}"
                  NDType="java.lang.String"/>
       <NamedData NDName="respId" NDValue="#{viewScope.RespId}"
                  NDType="java.lang.String"/>
-      <NamedData NDName="respAppl" NDValue="#{viewScope.respApplId}"
+      <NamedData NDName="respAppl" NDValue="#{viewScope.RespApplId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="mfgOrgId" NDValue="#{viewScope.MfgOrgId}"
                  NDType="java.lang.String"/>
     </methodAction>
     <methodAction id="callCreateReceiptProc"
@@ -118,14 +120,20 @@
     </attributeValues>
     <list IterBinding="EDRemittanceVO3Iterator" StaticList="false"
           Uses="LOV_PrcStatus" id="PrcStatus1" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="ExchangeRate">
+      <AttrNames>
+        <Item Value="ExchangeRate"/>
+      </AttrNames>
+    </attributeValues>
     <attributeValues IterBinding="EDRemittanceVO3Iterator" id="OperatingUnit">
       <AttrNames>
         <Item Value="OperatingUnit"/>
       </AttrNames>
     </attributeValues>
-    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="ExchangeRate">
+    <attributeValues IterBinding="EDRemittanceVO3Iterator"
+                     id="RemittanceHeaderId">
       <AttrNames>
-        <Item Value="ExchangeRate"/>
+        <Item Value="RemittanceHeaderId"/>
       </AttrNames>
     </attributeValues>
   </bindings>

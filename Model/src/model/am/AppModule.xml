@@ -59,6 +59,9 @@
   <ViewUsage
     Name="HrOperatingUnitsLOV1"
     ViewObjectName="model.lov.HrOperatingUnitsLOV"/>
+  <ViewUsage
+    Name="RemittanceHeaderIdLOV1"
+    ViewObjectName="model.lov.RemittanceHeaderIdLOV"/>
   <ViewLinkUsage
     Name="EDRemittanceHdrLinesVL"
     ViewLinkObjectName="model.vl.EDRemittanceHdrLinesVL"
@@ -92,6 +95,9 @@
         Type="java.lang.String"/>
       <Parameter
         Name="respAppl"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="mfgOrgId"
         Type="java.lang.String"/>
     </Method>
   </ClientInterface>

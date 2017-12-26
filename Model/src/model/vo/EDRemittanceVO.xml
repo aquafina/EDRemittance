@@ -90,6 +90,10 @@
     Name="PrcStatusLOV1"
     ViewObjectName="model.lov.PrcStatusLOV"
     RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="RemittanceHeaderIdLOV1"
+    ViewObjectName="model.lov.RemittanceHeaderIdLOV"
+    RowLevelBinds="true"/>
   <ListBinding
     Name="LOV_CustomerName"
     ListVOName="CustomerNameLOV1"
@@ -256,6 +260,25 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
+  <ListBinding
+    Name="LOV_RemittanceHeaderId"
+    ListVOName="RemittanceHeaderIdLOV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_RemittanceHeaderId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="RemittanceHeaderId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="RemittanceHeaderId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="RemittanceHeaderId"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
   <SQLQuery>
     <![CDATA[SELECT EDRemittanceEO.BANK_ACCOUNT_ID, 
        EDRemittanceEO.CREATED_BY, 
@@ -277,14 +300,15 @@
        EDRemittanceEO.RECEIPT_NUMBER, 
        EDRemittanceEO.REMITTANCE_HEADER_ID, 
        EDRemittanceEO.REQUEST_ID, 
-       EDRemittanceEO.STATUS,
-       cba.bank_account_name,
-       cbb.BANK_NAME, 
+       EDRemittanceEO.STATUS
+       ,cba.bank_account_name
+       ,cbb.BANK_NAME, 
        cbb.bank_branch_name
       ,HP.PARTY_NAME Customer_Name
       ,HL.ADDRESS1 customer_bill_to_address
       ,arm.name receipt_method_name
       ,hou.name operating_unit
+      --hcsua.*,hcasa.*
 FROM PWC_ED_REMITTANCE_HDR EDRemittanceEO
 ,AR_RECEIPT_METHOD_ACCOUNTS_all arma
 ,ce_bank_acct_uses_all cbau
@@ -298,14 +322,15 @@ FROM PWC_ED_REMITTANCE_HDR EDRemittanceEO
 ,HZ_LOCATIONS HL
 ,ar_Receipt_methods arm,
 hr_organization_units hou 
-where EDRemittanceEO.BANK_ACCOUNT_ID = arma.REMIT_BANK_ACCT_USE_ID
+where EDRemittanceEO.BANK_ACCOUNT_ID = cbau.bank_account_id
 and EDRemittanceEO.receipt_method_id = arma.receipt_method_id
-and arma.REMIT_BANK_ACCT_USE_ID = cbau.BANK_ACCT_USE_ID
-and cbau.bank_account_id = cba.bank_account_id   
+and cbau.BANK_ACCT_USE_ID = arma.REMIT_BANK_ACCT_USE_ID
+and EDRemittanceEO.BANK_ACCOUNT_ID = cba.bank_account_id   
 and cba.bank_branch_id = cbb.bank_branch_id
 and EDRemittanceEO.customer_id = HCA.cust_account_ID
 AND HCA.PARTY_ID = HP.PARTY_ID
 AND HCA.CUST_ACCOUNT_ID=HCASA.CUST_ACCOUNT_ID
+and EDRemittanceEO.org_id = hcasa.org_id
 AND HCASA.CUST_ACCT_SITE_ID=HCSUA.CUST_ACCT_SITE_ID
 and HCSUA.SITE_USE_CODE = 'BILL_TO'
 AND HCSUA.STATUS='A'
@@ -360,6 +385,12 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
     EntityAttrName="CustomerId"
     EntityUsage="EDRemittanceEO"
     AliasName="CUSTOMER_ID"/>
+  <ViewAttribute
+    Name="ExchangeRate"
+    PrecisionRule="true"
+    EntityAttrName="ExchangeRate"
+    EntityUsage="EDRemittanceEO"
+    AliasName="EXCHANGE_RATE"/>
   <ViewAttribute
     Name="ExchangeType"
     PrecisionRule="true"
@@ -472,7 +503,19 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
     PrecisionRule="true"
     EntityAttrName="RemittanceHeaderId"
     EntityUsage="EDRemittanceEO"
-    AliasName="REMITTANCE_HEADER_ID"/>
+    AliasName="REMITTANCE_HEADER_ID"
+    LOVName="LOV_RemittanceHeaderId">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.vo.EDRemittanceVO.RemittanceHeaderId_LABEL"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="RequestId"
     PrecisionRule="true"
@@ -598,7 +641,6 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
   </ViewAttribute>
   <ViewAttribute
     Name="OperatingUnit"
-    IsUpdateable="false"
     IsPersistent="false"
     IsNotNull="true"
     PrecisionRule="true"
@@ -612,12 +654,6 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
       <Attr Name="_DisplaySize" Value="240"/>
     </DesignTime>
   </ViewAttribute>
-  <ViewAttribute
-    Name="ExchangeRate"
-    PrecisionRule="true"
-    EntityAttrName="ExchangeRate"
-    EntityUsage="EDRemittanceEO"
-    AliasName="EXCHANGE_RATE"/>
   <ViewCriteria
     Name="EDRemittanceVOCriteria"
     ViewObjectName="model.vo.EDRemittanceVO"
@@ -639,6 +675,9 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
         <Property
           Name="mode"
           Value="Basic"/>
+        <Property
+          Name="displayName"
+          ResId="displayName"/>
       </CustomProperties>
     </Properties>
     <ViewCriteriaRow

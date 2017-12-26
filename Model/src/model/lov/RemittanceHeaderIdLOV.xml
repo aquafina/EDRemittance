@@ -20,8 +20,20 @@
         ResId="model.lov.RemittanceHeaderIdLOV_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
+  <Variable
+    Name="p_org_id"
+    Kind="where"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <TransientExpression><![CDATA[adf.context.sessionScope.org_id]]></TransientExpression>
+  </Variable>
   <SQLQuery>
-    <![CDATA[select remittance_header_id from PWC_ED_REMITTANCE_HDR]]>
+    <![CDATA[select remittance_header_id from PWC_ED_REMITTANCE_HDR where org_id = nvl(:p_org_id,org_id)]]>
   </SQLQuery>
   <ViewAttribute
     Name="RemittanceHeaderId"
@@ -36,6 +48,14 @@
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.lov.RemittanceHeaderIdLOV.RemittanceHeaderId_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ResourceBundle>
     <PropertiesBundle
