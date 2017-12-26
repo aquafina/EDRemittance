@@ -260,6 +260,24 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
+  <ListBinding
+    Name="LOV_RemittanceHeaderId"
+    ListVOName="RemittanceHeaderIdLOV1"
+    ListRangeSize="20"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="RemittanceHeaderId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="RemittanceHeaderId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="RemittanceHeaderId"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery>
     <![CDATA[SELECT EDRemittanceEO.BANK_ACCOUNT_ID, 
        EDRemittanceEO.CREATED_BY, 
@@ -484,13 +502,16 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
     PrecisionRule="true"
     EntityAttrName="RemittanceHeaderId"
     EntityUsage="EDRemittanceEO"
-    AliasName="REMITTANCE_HEADER_ID">
+    AliasName="REMITTANCE_HEADER_ID"
+    LOVName="LOV_RemittanceHeaderId">
     <Properties>
       <SchemaBasedProperties>
         <LABEL
           ResId="model.vo.EDRemittanceVO.RemittanceHeaderId_LABEL"/>
         <DISPLAYWIDTH
           Value="30"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

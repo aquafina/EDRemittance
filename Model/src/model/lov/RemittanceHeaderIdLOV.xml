@@ -9,7 +9,10 @@
   BindingStyle="OracleName"
   CustomQuery="true"
   PageIterMode="Full"
-  UseGlueCode="false">
+  UseGlueCode="false"
+  FetchMode="FETCH_AS_NEEDED"
+  FetchSize="20"
+  RangeSize="21">
   <DesignTime>
     <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
     <Attr Name="_isExpertMode" Value="true"/>
@@ -20,20 +23,8 @@
         ResId="model.lov.RemittanceHeaderIdLOV_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
-  <Variable
-    Name="p_org_id"
-    Kind="where"
-    Type="java.lang.String">
-    <Properties>
-      <SchemaBasedProperties>
-        <DISPLAYHINT
-          Value="Hide"/>
-      </SchemaBasedProperties>
-    </Properties>
-    <TransientExpression><![CDATA[adf.context.sessionScope.org_id]]></TransientExpression>
-  </Variable>
   <SQLQuery>
-    <![CDATA[select remittance_header_id from PWC_ED_REMITTANCE_HDR where org_id = nvl(:p_org_id,org_id)]]>
+    <![CDATA[select remittance_header_id from PWC_ED_REMITTANCE_HDR]]>
   </SQLQuery>
   <ViewAttribute
     Name="RemittanceHeaderId"

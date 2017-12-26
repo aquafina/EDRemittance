@@ -11,12 +11,12 @@
     <iterator Binds="EDRemittanceLinesVO3" RangeSize="10"
               DataControl="AppModuleDataControl"
               id="EDRemittanceLinesVO3Iterator"/>
+    <invokeAction Binds="setSessionValues" id="setsessionValuesAction"
+                  Refresh="always"/>
     <searchRegion Criteria="EDRemittanceVOCriteria"
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="EDRemittanceVO3Iterator"
                   id="EDRemittanceVOCriteriaQuery"/>
-    <invokeAction Binds="setSessionValues" id="setsessionValuesAction"
-                  Refresh="always"/>
   </executables>
   <bindings>
     <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
@@ -135,5 +135,7 @@
         <Item Value="RemittanceHeaderId"/>
       </AttrNames>
     </attributeValues>
+    <action IterBinding="EDRemittanceVO3Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
   </bindings>
 </pageDefinition>

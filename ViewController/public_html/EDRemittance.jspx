@@ -11,11 +11,15 @@
         <af:panelGroupLayout id="pgl1" inlineStyle="width:812px; height:284px;">
           <af:panelGroupLayout layout="vertical" id="pgl3">
             <af:panelHeader text="Remittance Search" id="ph3">
-              <af:query id="qryId1" headerText="Search" disclosed="false"
-                        value="#{bindings.EDRemittanceVOCriteriaQuery.queryDescriptor}"
-                        model="#{bindings.EDRemittanceVOCriteriaQuery.queryModel}"
-                        queryListener="#{bindings.EDRemittanceVOCriteriaQuery.processQuery}"
-                        queryOperationListener="#{bindings.EDRemittanceVOCriteriaQuery.processQueryOperation}"/>
+              <af:panelGroupLayout layout="vertical" id="pgl5">
+                <af:panelHeader text="EDRemittanceEO" id="ph4">
+                  <af:query id="qryId1" headerText="Search" disclosed="true"
+                            value="#{bindings.EDRemittanceVOCriteriaQuery.queryDescriptor}"
+                            model="#{bindings.EDRemittanceVOCriteriaQuery.queryModel}"
+                            queryListener="#{bindings.EDRemittanceVOCriteriaQuery.processQuery}"
+                            queryOperationListener="#{bindings.EDRemittanceVOCriteriaQuery.processQueryOperation}"/>
+                </af:panelHeader>
+              </af:panelGroupLayout>
             </af:panelHeader>
           </af:panelGroupLayout>
           <af:panelHeader text="Remittance Header" id="ph1"

@@ -64,7 +64,6 @@ public class EDRemittance {
     }
 
     public void createReceiptAPIActionListener(ActionEvent actionEvent) {
-        
         String stmt = "pwc_remittance_create_receipt(? " +
             ",?" +
             ",?" +
@@ -88,8 +87,6 @@ public class EDRemittance {
         params.put("stmt", stmt);
         Object result = operationBinding.execute();
         System.out.println(result+" ");
-
-        
     }
 
     public BindingContainer getBindings() {

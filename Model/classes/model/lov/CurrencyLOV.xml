@@ -25,7 +25,7 @@
     </SchemaBasedProperties>
   </Properties>
   <SQLQuery>
-    <![CDATA[Select CURRENCY_CODE,DESCRIPTION from FND_CURRENCIES_VL where currency_flag = 'Y' and end_date_active is null]]>
+    <![CDATA[Select CURRENCY_CODE,DESCRIPTION from FND_CURRENCIES_VL where enabled_flag = 'Y']]>
   </SQLQuery>
   <ViewAttribute
     Name="CurrencyCode"

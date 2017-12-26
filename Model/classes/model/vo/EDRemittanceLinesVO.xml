@@ -61,13 +61,11 @@
     <AttrArray Name="DerivedAttrNames">
       <Item Value="CommInvDate"/>
       <Item Value="DueAmount"/>
-      <Item Value="Discount"/>
     </AttrArray>
     <AttrArray Name="ListAttrNames">
       <Item Value="CommInvNum"/>
       <Item Value="CommInvDate"/>
       <Item Value="DueAmount"/>
-      <Item Value="Discount"/>
     </AttrArray>
     <AttrArray Name="ListDisplayAttrNames">
       <Item Value="CommInvNum"/>
