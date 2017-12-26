@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ED_Remittance_TestPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="EDRemittanceVO3" RangeSize="1"
+              DataControl="AppModuleDataControl" id="EDRemittanceVO3Iterator"
+              RowCountThreshold="-1"/>
+    <iterator Binds="EDRemittanceLinesVO3" RangeSize="10"
+              DataControl="AppModuleDataControl"
+              id="EDRemittanceLinesVO3Iterator"/>
+    <invokeAction Binds="setSessionValues" id="setSessionValuesAction"
+                  Refresh="always"/>
+    <searchRegion Criteria="EDRemittanceVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="EDRemittanceVO3Iterator"
+                  id="EDRemittanceVOCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
+                  Uses="LOV_CustomerName" id="CustomerName"/>
+    <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
+                  Uses="LOV_ReceiptMethodName" id="ReceiptMethodName"/>
+    <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
+                  Uses="LOV_BankName" id="BankName"/>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="BankAccountName">
+      <AttrNames>
+        <Item Value="BankAccountName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="BankBranchName">
+      <AttrNames>
+        <Item Value="BankBranchName"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
+                  Uses="LOV_Currency" id="Currency"/>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="GlDate">
+      <AttrNames>
+        <Item Value="GlDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="PrcNumber">
+      <AttrNames>
+        <Item Value="PrcNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="Status">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="ReceiptNumber">
+      <AttrNames>
+        <Item Value="ReceiptNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
+                  Uses="LOV_ReceiptCategory" id="ReceiptCategory"/>
+    <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
+                  Uses="LOV_ExportCategory" id="ExportCategory"/>
+    <tree IterBinding="EDRemittanceLinesVO3Iterator" id="EDRemittanceLinesVO3">
+      <nodeDefinition DefName="model.vo.EDRemittanceLinesVO"
+                      Name="EDRemittanceLinesVO30">
+        <AttrNames>
+          <Item Value="CommInvNum"/>
+          <Item Value="CommInvDate"/>
+          <Item Value="DueAmount"/>
+          <Item Value="Discount"/>
+          <Item Value="VoucherNum"/>
+          <Item Value="Rownum"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="EDRemittanceVO3Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="EDRemittanceLinesVO3Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="AppModuleDataControl"/>
+    <listOfValues StaticList="false" IterBinding="EDRemittanceVO3Iterator"
+                  Uses="LOV_ExchangeType" id="ExchangeType"/>
+    <methodAction id="setSessionValues"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="setSessionValues"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="orgId" NDValue="#{viewScope.OrgId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="userId" NDValue="#{viewScope.UserId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respId" NDValue="#{viewScope.RespId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respAppl" NDValue="#{viewScope.respApplId}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="callCreateReceiptProc"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="callCreateReceiptProc"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.AppModuleDataControl.methodResults.callCreateReceiptProc_AppModuleDataControl_dataProvider_callCreateReceiptProc_result">
+      <NamedData NDName="sqlReturnType" NDValue="" NDType="int"/>
+      <NamedData NDName="stmt" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator"
+                     id="CustomerBillToAddress">
+      <AttrNames>
+        <Item Value="CustomerBillToAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="OrgId">
+      <AttrNames>
+        <Item Value="OrgId"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="EDRemittanceVO3Iterator" StaticList="false"
+          Uses="LOV_PrcStatus" id="PrcStatus1" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="OperatingUnit">
+      <AttrNames>
+        <Item Value="OperatingUnit"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="ExchangeRate">
+      <AttrNames>
+        <Item Value="ExchangeRate"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

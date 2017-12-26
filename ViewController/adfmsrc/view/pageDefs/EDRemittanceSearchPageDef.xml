@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="EDRemittanceSearchPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="EDRemittanceLinesVO3" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="EDRemittanceLinesVO3Iterator"/>
+    <searchRegion Criteria="EDRemittanceLinesVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="EDRemittanceLinesVO3Iterator"
+                  id="EDRemittanceLinesVOCriteriaQuery"/>
+    <iterator Binds="EDRemittanceLinesVO2" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="EDRemittanceLinesVO2Iterator"/>
+    <searchRegion Criteria="EDRemittanceLinesVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="EDRemittanceLinesVO2Iterator"
+                  id="EDRemittanceLinesVOCriteriaQuery1"/>
+  </executables>
+  <bindings>
+    <action IterBinding="EDRemittanceLinesVO3Iterator"
+            id="setCurrentRowWithKeyValue" RequiresUpdateModel="false"
+            Action="setCurrentRowWithKeyValue">
+      <NamedData NDName="rowKey" NDType="java.lang.String"/>
+    </action>
+    <tree IterBinding="EDRemittanceLinesVO3Iterator" id="EDRemittanceLinesVO3">
+      <nodeDefinition DefName="model.vo.EDRemittanceLinesVO"
+                      Name="EDRemittanceLinesVO30">
+        <AttrNames>
+          <Item Value="CommInvNum"/>
+          <Item Value="CommInvDate"/>
+          <Item Value="DueAmount"/>
+          <Item Value="Discount"/>
+          <Item Value="VoucherNum"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="EDRemittanceLinesVO2Iterator" id="CommInvNum">
+      <AttrNames>
+        <Item Value="CommInvNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceLinesVO2Iterator"
+                     id="CommInvDate">
+      <AttrNames>
+        <Item Value="CommInvDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceLinesVO2Iterator" id="DueAmount">
+      <AttrNames>
+        <Item Value="DueAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceLinesVO2Iterator" id="Discount">
+      <AttrNames>
+        <Item Value="Discount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="EDRemittanceLinesVO2Iterator" id="VoucherNum">
+      <AttrNames>
+        <Item Value="VoucherNum"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

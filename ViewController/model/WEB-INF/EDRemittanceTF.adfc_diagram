@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">ED_RemittanceSearch</property>
+      <property
+         name="page">/ED_RemittanceSearch.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>ED_RemittanceSearch&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">188.79883</property>
+      <property
+         name="x">268.02832</property>
+   </View>
+   <View
+      id="View6">
+      <property
+         name="activityId">EDRemittance</property>
+      <property
+         name="page">/EDRemittance.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>EDRemittance&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">188.09766</property>
+      <property
+         name="x">536.68066</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="View2"
+      to="View6">
+      <property
+         name="fromOutcome">Create/Edit Remittance</property>
+      <property
+         name="sdm:polyPoints">R46,309.02832,184.94824,495.6675,184.24707,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase8"
+      from="View6"
+      to="View2">
+      <property
+         name="fromOutcome">Search Remittance</property>
+      <property
+         name="sdm:polyPoints">L54,495.68066,191.24707,309.04147,191.94824,R54</property>
+   </ControlFlowCase>
+</SDM>

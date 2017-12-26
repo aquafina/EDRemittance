@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="view" ClientType="Generic">
+  <pageMap>
+    <page path="/ED_Remittance.jsp" usageId="view_ED_RemittancePageDef"/>
+    <page path="/ED_Remittance_Test.jspx" usageId="view_TestPageDef"/>
+    <page path="/ED_RemittanceSearch.jspx"
+          usageId="view_EDRemittanceSearchPageDef"/>
+    <page path="/EDRemittance.jspx"
+          usageId="view_ED_Remittance_TestPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_ED_RemittancePageDef"
+          path="view.pageDefs.ED_RemittancePageDef"/>
+    <page id="view_TestPageDef" path="view.pageDefs.TestPageDef"/>
+    <page id="view_EDRemittanceSearchPageDef"
+          path="view.pageDefs.EDRemittanceSearchPageDef"/>
+    <page id="view_ED_Remittance_TestPageDef"
+          path="view.pageDefs.ED_Remittance_TestPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="AppModuleDataControl" Package="model.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

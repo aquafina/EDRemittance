@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:panelGroupLayout id="pgl1" inlineStyle="width:812px; height:284px;">
+          <af:panelGroupLayout layout="vertical" id="pgl3">
+            <af:panelHeader text="Remittance Search" id="ph3">
+              <af:query id="qryId1" headerText="Search" disclosed="false"
+                        value="#{bindings.EDRemittanceVOCriteriaQuery.queryDescriptor}"
+                        model="#{bindings.EDRemittanceVOCriteriaQuery.queryModel}"
+                        queryListener="#{bindings.EDRemittanceVOCriteriaQuery.processQuery}"
+                        queryOperationListener="#{bindings.EDRemittanceVOCriteriaQuery.processQueryOperation}"/>
+            </af:panelHeader>
+          </af:panelGroupLayout>
+          <af:panelHeader text="Remittance Header" id="ph1"
+                          inlineStyle="width:100%; height:25px; background-color:ActiveCaption; color:White;"/>
+          <af:panelGridLayout id="pgl2" partialTriggers="qryId1">
+            <af:gridRow marginTop="5px" height="auto" id="gr1">
+              <af:gridCell marginStart="5px" width="20%" id="gc13">
+                <af:outputLabel value="Operating Unit" id="ol1"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gc20">
+                <af:outputText value="#{bindings.OrgId.inputValue}" id="ot7"
+                               rendered="false"/>
+                <af:inputText value="#{bindings.OperatingUnit.inputValue}"
+                              simple="true"
+                              required="#{bindings.OperatingUnit.hints.mandatory}"
+                              columns="#{bindings.OperatingUnit.hints.displayWidth}"
+                              maximumLength="#{bindings.OperatingUnit.hints.precision}"
+                              shortDesc="#{bindings.OperatingUnit.hints.tooltip}"
+                              id="it7" disabled="true">
+                  <f:validator binding="#{bindings.OperatingUnit.validator}"/>
+                </af:inputText>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gc19">
+                <af:outputLabel value="PRC Number" id="ol10"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gc9">
+                <af:inputText value="#{bindings.PrcNumber.inputValue}"
+                              required="#{bindings.PrcNumber.hints.mandatory}"
+                              columns="#{bindings.PrcNumber.hints.displayWidth}"
+                              maximumLength="#{bindings.PrcNumber.hints.precision}"
+                              shortDesc="#{bindings.PrcNumber.hints.tooltip}"
+                              id="it11" contentStyle="width:200px;">
+                  <f:validator binding="#{bindings.PrcNumber.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.PrcNumber.format}"/>
+                </af:inputText>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" height="auto" id="gr6">
+              <af:gridCell marginStart="5px" width="20%" id="gc17">
+                <af:outputLabel value="Customer Name" id="ol2"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gc5">
+                <af:inputListOfValues id="customerNameId"
+                                      popupTitle="Search and Select: #{bindings.CustomerName.hints.label}"
+                                      value="#{bindings.CustomerName.inputValue}"
+                                      model="#{bindings.CustomerName.listOfValuesModel}"
+                                      columns="#{bindings.CustomerName.hints.displayWidth}"
+                                      shortDesc="#{bindings.CustomerName.hints.tooltip}"
+                                      contentStyle="width:200px;"
+                                      showRequired="true"
+                                      required="#{bindings.CustomerName.hints.mandatory}">
+                  <f:validator binding="#{bindings.CustomerName.validator}"/>
+                </af:inputListOfValues>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gc25">
+                <af:outputLabel value="PRC Status" id="ol11"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gc4">
+                <af:selectOneChoice value="#{bindings.PrcStatus1.inputValue}"
+                                    required="#{bindings.PrcStatus1.hints.mandatory}"
+                                    shortDesc="#{bindings.PrcStatus1.hints.tooltip}"
+                                    id="soc1">
+                  <f:selectItems value="#{bindings.PrcStatus1.items}" id="si1"/>
+                </af:selectOneChoice>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" height="auto" id="gr2">
+              <af:gridCell marginStart="5px" width="20%" id="gc11">
+                <h:outputLabel value="Customer Bill to Address" id="ol3"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gc8">
+                <af:inputText value="#{bindings.CustomerBillToAddress.inputValue}"
+                              columns="#{bindings.CustomerBillToAddress.hints.displayWidth}"
+                              maximumLength="#{bindings.CustomerBillToAddress.hints.precision}"
+                              shortDesc="#{bindings.CustomerBillToAddress.hints.tooltip}"
+                              id="it1" contentStyle="width:200px;"
+                              partialTriggers="customerNameId">
+                  <f:validator binding="#{bindings.CustomerBillToAddress.validator}"/>
+                </af:inputText>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gc23">
+                <af:outputLabel value="Status" id="ol12"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gc10">
+                <af:inputText value="#{bindings.Status.inputValue}"
+                              required="#{bindings.Status.hints.mandatory}"
+                              columns="#{bindings.Status.hints.displayWidth}"
+                              maximumLength="#{bindings.Status.hints.precision}"
+                              shortDesc="#{bindings.Status.hints.tooltip}"
+                              id="it10" contentStyle="width:200px;">
+                  <f:validator binding="#{bindings.Status.validator}"/>
+                </af:inputText>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" height="auto" id="gr7">
+              <af:gridCell marginStart="5px" width="20%" id="gc16">
+                <h:outputLabel value="Receipt Method Name" id="ol4"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gc27">
+                <af:inputListOfValues id="receiptMethodNameId"
+                                      popupTitle="Search and Select: #{bindings.ReceiptMethodName.hints.label}"
+                                      value="#{bindings.ReceiptMethodName.inputValue}"
+                                      model="#{bindings.ReceiptMethodName.listOfValuesModel}"
+                                      columns="#{bindings.ReceiptMethodName.hints.displayWidth}"
+                                      shortDesc="#{bindings.ReceiptMethodName.hints.tooltip}"
+                                      contentStyle="width:200px;"
+                                      showRequired="true"
+                                      required="#{bindings.ReceiptMethodName.hints.mandatory}">
+                  <f:validator binding="#{bindings.ReceiptMethodName.validator}"/>
+                </af:inputListOfValues>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gc14">
+                <af:outputLabel value="Receipt Number" id="ol13"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gc21">
+                <af:inputText value="#{bindings.ReceiptNumber.inputValue}"
+                              required="true"
+                              columns="#{bindings.ReceiptNumber.hints.displayWidth}"
+                              maximumLength="#{bindings.ReceiptNumber.hints.precision}"
+                              shortDesc="#{bindings.ReceiptNumber.hints.tooltip}"
+                              id="it5" contentStyle="width:200px;">
+                  <f:validator binding="#{bindings.ReceiptNumber.validator}"/>
+                </af:inputText>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" height="auto" id="gr4">
+              <af:gridCell marginStart="5px" width="20%" id="gc22">
+                <af:outputLabel id="ol5" value="Bank Name"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gc24">
+                <af:inputListOfValues id="bankNameId"
+                                      popupTitle="Search and Select: #{bindings.BankName.hints.label}"
+                                      value="#{bindings.BankName.inputValue}"
+                                      model="#{bindings.BankName.listOfValuesModel}"
+                                      columns="#{bindings.BankName.hints.displayWidth}"
+                                      shortDesc="#{bindings.BankName.hints.tooltip}"
+                                      contentStyle="width:200px;"
+                                      showRequired="true"
+                                      required="#{bindings.BankName.hints.mandatory}">
+                  <f:validator binding="#{bindings.BankName.validator}"/>
+                </af:inputListOfValues>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gc26">
+                <af:outputText value="Receipt Category" id="ot2"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gc3">
+                <af:inputListOfValues id="receiptCategoryId"
+                                      popupTitle="Search and Select: #{bindings.ReceiptCategory.hints.label}"
+                                      value="#{bindings.ReceiptCategory.inputValue}"
+                                      model="#{bindings.ReceiptCategory.listOfValuesModel}"
+                                      columns="#{bindings.ReceiptCategory.hints.displayWidth}"
+                                      shortDesc="#{bindings.ReceiptCategory.hints.tooltip}"
+                                      contentStyle="width:200px;"
+                                      showRequired="false"
+                                      required="#{bindings.ReceiptCategory.hints.mandatory}">
+                  <f:validator binding="#{bindings.ReceiptCategory.validator}"/>
+                </af:inputListOfValues>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" height="auto" id="gr3">
+              <af:gridCell marginStart="5px" width="20%" id="gc2">
+                <af:outputLabel value="Bank Account Name" id="ol6"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gc6">
+                <af:inputText value="#{bindings.BankAccountName.inputValue}"
+                              columns="#{bindings.BankAccountName.hints.displayWidth}"
+                              maximumLength="#{bindings.BankAccountName.hints.precision}"
+                              shortDesc="#{bindings.BankAccountName.hints.tooltip}"
+                              id="it3" contentStyle="width:200px;"
+                              partialTriggers="bankNameId">
+                  <f:validator binding="#{bindings.BankAccountName.validator}"/>
+                </af:inputText>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gc12">
+                <af:outputText value="Export Category" id="ot3"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gc15">
+                <af:inputListOfValues id="exportCategoryId"
+                                      popupTitle="Search and Select: #{bindings.ExportCategory.hints.label}"
+                                      value="#{bindings.ExportCategory.inputValue}"
+                                      model="#{bindings.ExportCategory.listOfValuesModel}"
+                                      columns="#{bindings.ExportCategory.hints.displayWidth}"
+                                      shortDesc="#{bindings.ExportCategory.hints.tooltip}"
+                                      contentStyle="width:200px;"
+                                      showRequired="false">
+                  <f:validator binding="#{bindings.ExportCategory.validator}"/>
+                </af:inputListOfValues>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                        id="gr5">
+              <af:gridCell marginStart="5px" width="20%" id="gc7">
+                <af:outputLabel value="Bank Branch Name" id="ol7"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gc28">
+                <af:inputText value="#{bindings.BankBranchName.inputValue}"
+                              columns="#{bindings.BankBranchName.hints.displayWidth}"
+                              maximumLength="#{bindings.BankBranchName.hints.precision}"
+                              shortDesc="#{bindings.BankBranchName.hints.tooltip}"
+                              id="it4" contentStyle="width:200px;"
+                              partialTriggers="bankNameId">
+                  <f:validator binding="#{bindings.BankBranchName.validator}"/>
+                </af:inputText>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gc1">
+                <af:outputText value="Exchange Type" id="ot5"/>
+              </af:gridCell>
+              <af:gridCell id="gc29">
+                <af:inputListOfValues id="exchangeTypeId"
+                                      popupTitle="Search and Select: #{bindings.ExchangeType.hints.label}"
+                                      value="#{bindings.ExchangeType.inputValue}"
+                                      model="#{bindings.ExchangeType.listOfValuesModel}"
+                                      required="#{bindings.Currency.inputValue!='BDT'}"
+                                      columns="#{bindings.ExchangeType.hints.displayWidth}"
+                                      shortDesc="#{bindings.ExchangeType.hints.tooltip}"
+                                      contentStyle="width:200px;"
+                                      showRequired="#{bindings.Currency.inputValue!='BDT'}"
+                                      partialTriggers="currencyId"
+                                      returnPopupListener="#{backingBeanScope.EDRemittanceBean.exchangeTypeReturnPopupListener}">
+                  <f:validator binding="#{bindings.ExchangeType.validator}"/>
+                </af:inputListOfValues>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow marginTop="5px" height="auto" id="gridRow1">
+              <af:gridCell marginStart="5px" width="20%" id="gridCell1">
+                <af:outputLabel value="Currency" id="ol9"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="30%" id="gridCell2">
+                <af:inputListOfValues id="currencyId"
+                                      popupTitle="Search and Select: #{bindings.Currency.hints.label}"
+                                      value="#{bindings.Currency.inputValue}"
+                                      model="#{bindings.Currency.listOfValuesModel}"
+                                      required="true"
+                                      columns="#{bindings.Currency.hints.displayWidth}"
+                                      shortDesc="#{bindings.Currency.hints.tooltip}"
+                                      contentStyle="width:200px;"
+                                      showRequired="false" autoSubmit="true">
+                  <f:validator binding="#{bindings.Currency.validator}"/>
+                </af:inputListOfValues>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
+                           id="gridCell4">
+                <af:outputText value="Exchange Rate" id="ot4"/>
+              </af:gridCell>
+              <af:gridCell id="gc30">
+                <af:inputText value="#{bindings.ExchangeRate.inputValue}"
+                              required="#{bindings.ExchangeRate.hints.mandatory}"
+                              columns="#{bindings.ExchangeRate.hints.displayWidth}"
+                              maximumLength="#{bindings.ExchangeRate.hints.precision}"
+                              shortDesc="#{bindings.ExchangeRate.hints.tooltip}"
+                              id="it8" contentStyle="width:200px;"
+                              disabled="#{bindings.ExchangeType.inputValue=='Corporate'}"
+                              binding="#{backingBeanScope.EDRemittanceBean.exchangeRateInputText}"
+                              partialTriggers="exchangeTypeId">
+                  <f:validator binding="#{bindings.ExchangeRate.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.ExchangeRate.format}"/>
+                </af:inputText>
+              </af:gridCell>
+            </af:gridRow>
+            <af:gridRow id="gr8">
+              <af:gridCell id="gc18">
+                <af:outputLabel value="GL Date" id="ol8"/>
+              </af:gridCell>
+              <af:gridCell id="gridCell5">
+                <af:inputDate value="#{bindings.GlDate.inputValue}"
+                              required="true"
+                              shortDesc="#{bindings.GlDate.hints.tooltip}"
+                              id="id1" contentStyle="width:200px;"
+                              showRequired="false" autoSubmit="true">
+                  <f:validator binding="#{bindings.GlDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.GlDate.format}"/>
+                </af:inputDate>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="20%" id="gridCell6"/>
+              <af:gridCell id="gridCell7">
+                <af:commandButton text="New"
+                                  disabled="#{!bindings.CreateInsert.enabled}"
+                                  id="commandButton1"
+                                  actionListener="#{bindings.CreateInsert.execute}"/>
+                <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                  text="Save"
+                                  disabled="false"
+                                  id="cb1"/>
+                <af:commandButton text="Create Receipt" id="commandButton3"
+                                  actionListener="#{backingBeanScope.EDRemittanceBean.createReceiptAPIActionListener}"/>
+              </af:gridCell>
+            </af:gridRow>
+          </af:panelGridLayout>
+          <af:panelHeader text="Remittance Lines" id="ph2"
+                          inlineStyle="width:100%; height:25px; background-color:ActiveCaption;"/>
+          <af:commandButton
+                            text="New"
+                            disabled="#{bindings.EDRemittanceVO3Iterator.currentRowIndexInRange&lt;0}"
+                            id="cb4"
+                            actionListener="#{bindings.CreateInsert1.execute}"/>
+          <af:commandButton actionListener="#{bindings.Commit.execute}"
+                            text="Save" disabled="false"
+                            id="cb5"/>
+          <af:table value="#{bindings.EDRemittanceLinesVO3.collectionModel}"
+                    var="row" rows="#{bindings.EDRemittanceLinesVO3.rangeSize}"
+                    emptyText="#{bindings.EDRemittanceLinesVO3.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.EDRemittanceLinesVO3.rangeSize}"
+                    rowBandingInterval="0" id="t1" width="100%" varStatus="vs"
+                    partialTriggers="::cb4 ::qryId1" contentDelivery="immediate"
+                    autoHeightRows="10" filterVisible="true">
+            <af:column sortProperty="#{bindings.EDRemittanceLinesVO3.hints.Rownum.name}"
+                       sortable="false" headerText="Sr No" id="c6"
+                       align="center">
+              <af:outputText value="#{vs.index+1}" id="ot1">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.EDRemittanceLinesVO3.hints.Rownum.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.name}"
+                       sortable="false"
+                       headerText="Commercial Invoice No"
+                       id="c2" align="center" width="150">
+              <af:inputListOfValues id="commInvNumId"
+                                    popupTitle="Search and Select: #{bindings.EDRemittanceLinesVO3.hints.CommInvNum.label}"
+                                    value="#{row.bindings.CommInvNum.inputValue}"
+                                    model="#{row.bindings.CommInvNum.listOfValuesModel}"
+                                    required="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.mandatory}"
+                                    columns="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.displayWidth}"
+                                    shortDesc="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.tooltip}">
+                <f:validator binding="#{row.bindings.CommInvNum.validator}"/>
+              </af:inputListOfValues>
+            </af:column>
+            <af:column sortProperty="#{bindings.EDRemittanceLinesVO3.hints.CommInvDate.name}"
+                       sortable="false"
+                       headerText="Commercial Invoice Date"
+                       id="c3" align="center" width="150">
+              <af:outputText value="#{row.CommInvDate}" id="ot9"
+                             partialTriggers="commInvNumId">
+                <af:convertDateTime pattern="#{bindings.EDRemittanceLinesVO3.hints.CommInvDate.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.EDRemittanceLinesVO3.hints.DueAmount.name}"
+                       sortable="false"
+                       headerText="Due Amount"
+                       id="c1" align="center" width="120">
+              <af:outputText value="#{row.DueAmount}" id="ot6"
+                             partialTriggers="commInvNumId">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.EDRemittanceLinesVO3.hints.DueAmount.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.EDRemittanceLinesVO3.hints.Discount.name}"
+                       sortable="false"
+                       headerText="#{bindings.EDRemittanceLinesVO3.hints.Discount.label}"
+                       id="c5" align="center" width="120">
+              <af:outputText value="#{row.Discount}" id="ot8"
+                             partialTriggers="commInvNumId">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.EDRemittanceLinesVO3.hints.Discount.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.name}"
+                       sortable="false"
+                       headerText="Voucher Number"
+                       id="c4" align="center" width="120">
+              <af:inputText value="#{row.bindings.VoucherNum.inputValue}"
+                            label="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.label}"
+                            required="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.mandatory}"
+                            columns="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.displayWidth}"
+                            maximumLength="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.precision}"
+                            shortDesc="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.tooltip}"
+                            id="it9">
+                <f:validator binding="#{row.bindings.VoucherNum.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.format}"/>
+              </af:inputText>
+            </af:column>
+          </af:table>
+        </af:panelGroupLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

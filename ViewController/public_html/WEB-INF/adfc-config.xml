@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <metadata-resource>/WEB-INF/EDRemittanceTF.xml</metadata-resource>
+  <view id="view1">
+    <page>/view.jspx</page>
+    <input-page-parameter>
+      <from-value>#{param.name}</from-value>
+      <to-value>#{viewScope.name_param}</to-value>
+    </input-page-parameter>
+  </view>
+  <managed-bean id="__3">
+    <managed-bean-name id="__2">EDRemittanceBean</managed-bean-name>
+    <managed-bean-class id="__4">view.classes.EDRemittance</managed-bean-class>
+    <managed-bean-scope id="__1">backingBean</managed-bean-scope>
+  </managed-bean>
+</adfc-config>
