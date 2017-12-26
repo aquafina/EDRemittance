@@ -135,5 +135,7 @@
         <Item Value="RemittanceHeaderId"/>
       </AttrNames>
     </attributeValues>
+    <action IterBinding="EDRemittanceVO3Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
   </bindings>
 </pageDefinition>

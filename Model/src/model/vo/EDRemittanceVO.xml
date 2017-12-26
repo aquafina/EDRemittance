@@ -260,25 +260,6 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
-  <ListBinding
-    Name="LOV_RemittanceHeaderId"
-    ListVOName="RemittanceHeaderIdLOV1"
-    ListRangeSize="10"
-    NullValueFlag="none"
-    NullValueId="LOV_RemittanceHeaderId_LOVUIHints_NullValueId"
-    MRUCount="0">
-    <AttrArray Name="AttrNames">
-      <Item Value="RemittanceHeaderId"/>
-    </AttrArray>
-    <AttrArray Name="ListAttrNames">
-      <Item Value="RemittanceHeaderId"/>
-    </AttrArray>
-    <AttrArray Name="ListDisplayAttrNames">
-      <Item Value="RemittanceHeaderId"/>
-    </AttrArray>
-    <DisplayCriteria
-      Hint="showAndExecute"/>
-  </ListBinding>
   <SQLQuery>
     <![CDATA[SELECT EDRemittanceEO.BANK_ACCOUNT_ID, 
        EDRemittanceEO.CREATED_BY, 
@@ -503,14 +484,11 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
     PrecisionRule="true"
     EntityAttrName="RemittanceHeaderId"
     EntityUsage="EDRemittanceEO"
-    AliasName="REMITTANCE_HEADER_ID"
-    LOVName="LOV_RemittanceHeaderId">
+    AliasName="REMITTANCE_HEADER_ID">
     <Properties>
       <SchemaBasedProperties>
         <LABEL
           ResId="model.vo.EDRemittanceVO.RemittanceHeaderId_LABEL"/>
-        <CONTROLTYPE
-          Value="input_text_lov"/>
         <DISPLAYWIDTH
           Value="30"/>
       </SchemaBasedProperties>

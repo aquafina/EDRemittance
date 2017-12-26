@@ -22,6 +22,7 @@ import oracle.jbo.RowSet;
 import oracle.jbo.ViewObject;
 import oracle.jbo.domain.Date;
 import oracle.jbo.domain.Number;
+import oracle.jbo.domain.Timestamp;
 import oracle.jbo.server.AttributeDefImpl;
 import oracle.jbo.server.ViewRowImpl;
 // ---------------------------------------------------------------------
@@ -61,7 +62,7 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
             }
 
             public void put(EDRemittanceVORowImpl obj, Object value) {
-                obj.setCreationDate((Date)value);
+                obj.setCreationDate((Timestamp)value);
             }
         }
         ,
@@ -131,7 +132,7 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
             }
 
             public void put(EDRemittanceVORowImpl obj, Object value) {
-                obj.setLastUpdateDate((Date)value);
+                obj.setLastUpdateDate((Timestamp)value);
             }
         }
         ,
@@ -532,15 +533,15 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
      * Gets the attribute value for CREATION_DATE using the alias name CreationDate.
      * @return the CREATION_DATE
      */
-    public Date getCreationDate() {
-        return (Date) getAttributeInternal(CREATIONDATE);
+    public Timestamp getCreationDate() {
+        return (Timestamp) getAttributeInternal(CREATIONDATE);
     }
 
     /**
      * Sets <code>value</code> as attribute value for CREATION_DATE using the alias name CreationDate.
      * @param value value to set the CREATION_DATE
      */
-    public void setCreationDate(Date value) {
+    public void setCreationDate(Timestamp value) {
         setAttributeInternal(CREATIONDATE, value);
     }
 
@@ -631,15 +632,15 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
      * Gets the attribute value for LAST_UPDATE_DATE using the alias name LastUpdateDate.
      * @return the LAST_UPDATE_DATE
      */
-    public Date getLastUpdateDate() {
-        return (Date) getAttributeInternal(LASTUPDATEDATE);
+    public Timestamp getLastUpdateDate() {
+        return (Timestamp) getAttributeInternal(LASTUPDATEDATE);
     }
 
     /**
      * Sets <code>value</code> as attribute value for LAST_UPDATE_DATE using the alias name LastUpdateDate.
      * @param value value to set the LAST_UPDATE_DATE
      */
-    public void setLastUpdateDate(Date value) {
+    public void setLastUpdateDate(Timestamp value) {
         setAttributeInternal(LASTUPDATEDATE, value);
     }
 

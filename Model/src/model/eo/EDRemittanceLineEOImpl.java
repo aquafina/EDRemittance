@@ -860,6 +860,7 @@ public class EDRemittanceLineEOImpl extends EntityImpl {
             {
                 setLastUpdateDate(new Timestamp(System.currentTimeMillis()));
                 setLastUpdatedBy(new oracle.jbo.domain.Number(user));
+                setLastUpdateLogin(new oracle.jbo.domain.Number(user));
             } 
             catch (SQLException f) 
             {

@@ -310,6 +310,10 @@
                                   actionListener="#{bindings.CreateInsert.execute}"/>
                 <af:commandButton actionListener="#{bindings.Commit.execute}"
                                   text="Save" disabled="false" id="cb1"/>
+                <af:commandButton actionListener="#{bindings.Delete.execute}"
+                                  text="Delete"
+                                  disabled="#{!bindings.Delete.enabled}"
+                                  id="cb2"/>
                 <af:commandButton text="Create Receipt" id="commandButton3"
                                   actionListener="#{backingBeanScope.EDRemittanceBean.createReceiptAPIActionListener}"/>
               </af:gridCell>
@@ -317,15 +321,18 @@
           </af:panelGridLayout>
           <af:panelHeader text="Remittance Lines" id="ph2"
                           inlineStyle="width:100%; height:25px; background-color:ActiveCaption;"/>
-          <af:commandButton
-                            text="New"
-                            disabled="#{bindings.EDRemittanceVO3Iterator.estimatedRowCount&lt;=0}"
-                            id="cb4"
-                            actionListener="#{bindings.CreateInsert1.execute}"
-                            partialTriggers="pgl2"/>
-          <af:commandButton actionListener="#{bindings.Commit.execute}"
-                            text="Save" disabled="false"
-                            id="cb5"/>
+          <af:panelGroupLayout id="pgl4">
+            <af:commandButton text="New"
+                              disabled="#{bindings.EDRemittanceVO3Iterator.estimatedRowCount&lt;=0}"
+                              id="cb4"
+                              actionListener="#{bindings.CreateInsert1.execute}"
+                              partialTriggers="pgl2"/>
+            <af:commandButton actionListener="#{bindings.Commit.execute}"
+                              text="Save" disabled="false" id="cb5"/>
+          </af:panelGroupLayout>
+          <af:commandButton actionListener="#{bindings.Delete.execute}"
+                            text="Delete" disabled="#{!bindings.Delete.enabled}"
+                            id="cb3"/>
           <af:table value="#{bindings.EDRemittanceLinesVO3.collectionModel}"
                     var="row" rows="#{bindings.EDRemittanceLinesVO3.rangeSize}"
                     emptyText="#{bindings.EDRemittanceLinesVO3.viewable ? 'No data to display.' : 'Access Denied.'}"
@@ -378,11 +385,17 @@
                        sortable="false"
                        headerText="#{bindings.EDRemittanceLinesVO3.hints.Discount.label}"
                        id="c5" align="center" width="120">
-              <af:outputText value="#{row.Discount}" id="ot8"
-                             partialTriggers="commInvNumId">
+              <af:inputText value="#{row.bindings.Discount.inputValue}"
+                            label="#{bindings.EDRemittanceLinesVO3.hints.Discount.label}"
+                            required="#{bindings.EDRemittanceLinesVO3.hints.Discount.mandatory}"
+                            columns="#{bindings.EDRemittanceLinesVO3.hints.Discount.displayWidth}"
+                            maximumLength="#{bindings.EDRemittanceLinesVO3.hints.Discount.precision}"
+                            shortDesc="#{bindings.EDRemittanceLinesVO3.hints.Discount.tooltip}"
+                            id="it2">
+                <f:validator binding="#{row.bindings.Discount.validator}"/>
                 <af:convertNumber groupingUsed="false"
                                   pattern="#{bindings.EDRemittanceLinesVO3.hints.Discount.format}"/>
-              </af:outputText>
+              </af:inputText>
             </af:column>
             <af:column sortProperty="#{bindings.EDRemittanceLinesVO3.hints.VoucherNum.name}"
                        sortable="false"
