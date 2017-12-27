@@ -23,8 +23,19 @@
         ResId="model.lov.RemittanceHeaderIdLOV_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
+  <Variable
+    Name="p_org_id"
+    Kind="where"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
   <SQLQuery>
-    <![CDATA[select remittance_header_id from PWC_ED_REMITTANCE_HDR]]>
+    <![CDATA[select remittance_header_id from PWC_ED_REMITTANCE_HDR where org_id = nvl(:p_org_id, org_id)]]>
   </SQLQuery>
   <ViewAttribute
     Name="RemittanceHeaderId"
@@ -48,6 +59,9 @@
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="RemittanceHeaderId"/>
+  </AttrArray>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

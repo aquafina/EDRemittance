@@ -194,22 +194,35 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             ViewObject EDRemittanceVO = this.getEDRemittanceVO3();
             Row currRow = EDRemittanceVO.getCurrentRow();
             cst.setInt(1,Integer.parseInt(currRow.getAttribute("RemittanceHeaderId").toString()));
+            System.out.println("header id = "+Integer.parseInt(currRow.getAttribute("RemittanceHeaderId").toString()));
             cst.setInt(2,Integer.parseInt(currRow.getAttribute("CustomerId").toString()));
+            System.out.println("cust id = "+Integer.parseInt(currRow.getAttribute("CustomerId").toString()));
             cst.setInt(3,Integer.parseInt(currRow.getAttribute("ReceiptMethodId").toString()));
+            System.out.println("receipt method id = "+Integer.parseInt(currRow.getAttribute("ReceiptMethodId").toString()));
             cst.setString(4,currRow.getAttribute("Currency").toString());
+            System.out.println("Currency = "+currRow.getAttribute("Currency").toString());
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date dateJava = sdf1.parse(currRow.getAttribute("GlDate").toString());
             cst.setTimestamp(5,new Timestamp(dateJava.getTime()));
+            System.out.println("Gl Date = "+new Timestamp(dateJava.getTime()));
             cst.setString(6, currRow.getAttribute("ReceiptNumber").toString());
+            System.out.println("Receipt Number = "+currRow.getAttribute("ReceiptNumber").toString());
             cst.setString(7, currRow.getAttribute("ExchangeType").toString());
+            System.out.println("Exchange Type = "+currRow.getAttribute("ExchangeType").toString());
             cst.setDouble(8,Double.parseDouble(currRow.getAttribute("ExchangeRate").toString()));
+            System.out.println("Exchange Rate = "+Double.parseDouble(currRow.getAttribute("ExchangeRate").toString()));
             cst.setInt(9, Integer.parseInt(currRow.getAttribute("BankAccountId").toString()));
+            System.out.println("Bank Account Id = "+Integer.parseInt(currRow.getAttribute("BankAccountId").toString()));
             cst.setInt(10, 100);//Integer.parseInt(currRow.getAttribute("OrgId").toString())
+            System.out.println("org id = "+Integer.parseInt(currRow.getAttribute("OrgId").toString()));
             cst.setString(11, currRow.getAttribute("ReceiptCategory")!=null?currRow.getAttribute("ReceiptCategory").toString():null);
+            System.out.println("Receipt Category = "+currRow.getAttribute("ReceiptCategory"));
             cst.setString(12, currRow.getAttribute("ExportCategory")!=null?currRow.getAttribute("ExportCategory").toString():null);
+            System.out.println("Export Category = "+currRow.getAttribute("ExportCategory"));
 //            cst.setInt(13, Integer.parseInt(currRow.getAttribute("UserId").toString()));
             cst.setInt(13,1110);//USER ID
-            cst.setInt(14,20678);
+            System.out.println("user id = "+1110);
+            //cst.setInt(14,"resp"+20678);
             cst.setInt(15,222);
             cst.registerOutParameter(16, sqlReturnType);
             cst.execute();
