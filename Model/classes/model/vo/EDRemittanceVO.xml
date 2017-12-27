@@ -263,9 +263,9 @@
   <ListBinding
     Name="LOV_RemittanceHeaderId"
     ListVOName="RemittanceHeaderIdLOV1"
-    ListRangeSize="20"
-    NullValueFlag="start"
-    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_RemittanceHeaderId_LOVUIHints_NullValueId"
     MRUCount="0">
     <AttrArray Name="AttrNames">
       <Item Value="RemittanceHeaderId"/>
@@ -511,7 +511,7 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
         <DISPLAYWIDTH
           Value="30"/>
         <CONTROLTYPE
-          Value="combo_lov"/>
+          Value="input_text_lov"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
