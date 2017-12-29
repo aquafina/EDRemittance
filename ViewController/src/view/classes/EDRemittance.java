@@ -82,6 +82,8 @@ public class EDRemittance {
             ",?)";
         BindingContainer bindings = getBindings();
         OperationBinding operationBinding = bindings.getOperationBinding("callCreateReceiptProc");
+        if (operationBinding == null)
+            System.out.println("operationBinding is null");
         Map params =  operationBinding.getParamsMap();
         params.put("sqlReturnType", Types.VARCHAR);
         params.put("stmt", stmt);
@@ -138,5 +140,12 @@ public class EDRemittance {
 
     public RichInputText getExchangeRateInputText() {
         return exchangeRateInputText;
+    }
+
+    public void commInvNoValueChangeListener(ValueChangeEvent valueChangeEvent) {
+        if (valueChangeEvent.getNewValue()!=null) {
+            String value = valueChangeEvent.getNewValue().toString();
+            System.out.println("value = "+value);
+        }
     }
 }

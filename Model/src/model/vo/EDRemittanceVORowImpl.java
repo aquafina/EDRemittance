@@ -316,6 +316,16 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
             }
         }
         ,
+        RemittanceBankAcctId {
+            public Object get(EDRemittanceVORowImpl obj) {
+                return obj.getRemittanceBankAcctId();
+            }
+
+            public void put(EDRemittanceVORowImpl obj, Object value) {
+                obj.setRemittanceBankAcctId((Number)value);
+            }
+        }
+        ,
         EDRemittanceLinesVO {
             public Object get(EDRemittanceVORowImpl obj) {
                 return obj.getEDRemittanceLinesVO();
@@ -472,6 +482,7 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
     public static final int CUSTOMERBILLTOADDRESS = AttributesEnum.CustomerBillToAddress.index();
     public static final int RECEIPTMETHODNAME = AttributesEnum.ReceiptMethodName.index();
     public static final int OPERATINGUNIT = AttributesEnum.OperatingUnit.index();
+    public static final int REMITTANCEBANKACCTID = AttributesEnum.RemittanceBankAcctId.index();
     public static final int EDREMITTANCELINESVO = AttributesEnum.EDRemittanceLinesVO.index();
     public static final int CUSTOMERNAMELOV1 = AttributesEnum.CustomerNameLOV1.index();
     public static final int CURRENCYLOV1 = AttributesEnum.CurrencyLOV1.index();
@@ -943,6 +954,23 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
      */
     public void setOperatingUnit(String value) {
         setAttributeInternal(OPERATINGUNIT, value);
+    }
+
+
+    /**
+     * Gets the attribute value for the calculated attribute RemittanceBankAcctId.
+     * @return the RemittanceBankAcctId
+     */
+    public Number getRemittanceBankAcctId() {
+        return (Number) getAttributeInternal(REMITTANCEBANKACCTID);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute RemittanceBankAcctId.
+     * @param value value to set the  RemittanceBankAcctId
+     */
+    public void setRemittanceBankAcctId(Number value) {
+        setAttributeInternal(REMITTANCEBANKACCTID, value);
     }
 
     /**

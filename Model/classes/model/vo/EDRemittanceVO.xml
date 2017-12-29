@@ -229,12 +229,14 @@
       <Item Value="BankAccountId"/>
       <Item Value="BankAccountName"/>
       <Item Value="BankBranchName"/>
+      <Item Value="RemittanceBankAcctId"/>
     </AttrArray>
     <AttrArray Name="ListAttrNames">
       <Item Value="BankName"/>
       <Item Value="BankAccountId"/>
       <Item Value="BankAccountName"/>
       <Item Value="BankBranchName"/>
+      <Item Value="RemittanceBankAcctId"/>
     </AttrArray>
     <AttrArray Name="ListDisplayAttrNames">
       <Item Value="BankName"/>
@@ -312,7 +314,7 @@
       ,HL.ADDRESS1 customer_bill_to_address
       ,arm.name receipt_method_name
       ,hou.name operating_unit
-      --hcsua.*,hcasa.*
+      ,cbau.BANK_ACCT_USE_ID remittance_bank_acct_id
 FROM PWC_ED_REMITTANCE_HDR EDRemittanceEO
 ,AR_RECEIPT_METHOD_ACCOUNTS_all arma
 ,ce_bank_acct_uses_all cbau
@@ -656,6 +658,23 @@ and EDRemittanceEO.org_id = nvl(:p_org_id,EDRemittanceEO.org_id)
     SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RemittanceBankAcctId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="REMITTANCE_BANK_ACCT_ID"
+    Expression="REMITTANCE_BANK_ACCT_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
     </DesignTime>
   </ViewAttribute>
   <ViewCriteria

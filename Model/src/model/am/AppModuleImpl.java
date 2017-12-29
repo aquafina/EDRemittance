@@ -3,6 +3,7 @@ package model.am;
 import java.math.BigDecimal;
 
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -203,27 +204,31 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             System.out.println("Currency = "+currRow.getAttribute("Currency").toString());
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date dateJava = sdf1.parse(currRow.getAttribute("GlDate").toString());
-            cst.setTimestamp(5,new Timestamp(dateJava.getTime()));
-            System.out.println("Gl Date = "+new Timestamp(dateJava.getTime()));
+//            java.sql.Date dateSQL = new java.sql.Date(dateJava.getTime());
+//            cst.setTimestamp(5,new Timestamp(dateJava.getTime()));
+            String paramDate = new Timestamp(dateJava.getTime()).toString().split(" ")[0];
+            cst.setString(5,paramDate);
+//            cst.set(5, "to_date('"++"','YYYY-MM-DD')");
+            System.out.println("Gl Date = "+paramDate);
             cst.setString(6, currRow.getAttribute("ReceiptNumber").toString());
             System.out.println("Receipt Number = "+currRow.getAttribute("ReceiptNumber").toString());
             cst.setString(7, currRow.getAttribute("ExchangeType").toString());
             System.out.println("Exchange Type = "+currRow.getAttribute("ExchangeType").toString());
             cst.setDouble(8,Double.parseDouble(currRow.getAttribute("ExchangeRate").toString()));
             System.out.println("Exchange Rate = "+Double.parseDouble(currRow.getAttribute("ExchangeRate").toString()));
-            cst.setInt(9, Integer.parseInt(currRow.getAttribute("BankAccountId").toString()));
-            System.out.println("Bank Account Id = "+Integer.parseInt(currRow.getAttribute("BankAccountId").toString()));
-            cst.setInt(10, 100);//Integer.parseInt(currRow.getAttribute("OrgId").toString())
+            cst.setInt(9, Integer.parseInt(currRow.getAttribute("RemittanceBankAcctId").toString()));
+            System.out.println("Bank Account Id = "+Integer.parseInt(currRow.getAttribute("RemittanceBankAcctId").toString()));
+            cst.setInt(10, Integer.parseInt(currRow.getAttribute("OrgId").toString()));
             System.out.println("org id = "+Integer.parseInt(currRow.getAttribute("OrgId").toString()));
             cst.setString(11, currRow.getAttribute("ReceiptCategory")!=null?currRow.getAttribute("ReceiptCategory").toString():null);
             System.out.println("Receipt Category = "+currRow.getAttribute("ReceiptCategory"));
             cst.setString(12, currRow.getAttribute("ExportCategory")!=null?currRow.getAttribute("ExportCategory").toString():null);
             System.out.println("Export Category = "+currRow.getAttribute("ExportCategory"));
-//            cst.setInt(13, Integer.parseInt(currRow.getAttribute("UserId").toString()));
             cst.setInt(13,1110);//USER ID
             System.out.println("user id = "+1110);
-            //cst.setInt(14,"resp"+20678);
+            cst.setInt(14,20678);
             cst.setInt(15,222);
+            System.out.println("resp appl id = "+222);
             cst.registerOutParameter(16, sqlReturnType);
             cst.execute();
             //Finally get returned value

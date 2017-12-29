@@ -362,7 +362,8 @@
                                     model="#{row.bindings.CommInvNum.listOfValuesModel}"
                                     required="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.mandatory}"
                                     columns="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.displayWidth}"
-                                    shortDesc="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.tooltip}">
+                                    shortDesc="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.tooltip}"
+                                    valueChangeListener="#{backingBeanScope.EDRemittanceBean.commInvNoValueChangeListener}">
                 <f:validator binding="#{row.bindings.CommInvNum.validator}"/>
               </af:inputListOfValues>
             </af:column>

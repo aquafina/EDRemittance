@@ -36,7 +36,7 @@
     </Properties>
   </Variable>
   <SQLQuery>
-    <![CDATA[SELECT cba.bank_account_id, cba.bank_account_name, cbb.BANK_NAME, cbb.bank_branch_name,  armaa.receipt_method_id
+    <![CDATA[SELECT cba.bank_account_id, cba.bank_account_name, cbb.BANK_NAME, cbb.bank_branch_name, cbaua.bank_acct_use_id remittance_bank_acct_id, armaa.receipt_method_id
   FROM ce_bank_accounts cba, cefv_bank_branches cbb, AR.AR_RECEIPT_METHOD_ACCOUNTS_ALL armaa, ce_bank_acct_uses_all cbaua
  WHERE  cba.bank_branch_id = cbb.bank_branch_id
  and cba.bank_account_id = cbaua.bank_account_id 
@@ -131,6 +131,23 @@ and  cbaua.bank_acct_use_id = armaa.REMIT_BANK_ACCT_USE_ID
           Value="30"/>
       </SchemaBasedProperties>
     </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RemittanceBankAcctId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="REMITTANCE_BANK_ACCT_ID"
+    Expression="REMITTANCE_BANK_ACCT_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
   </ViewAttribute>
   <ViewAttribute
     Name="ReceiptMethodId"
