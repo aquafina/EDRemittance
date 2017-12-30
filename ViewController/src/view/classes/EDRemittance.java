@@ -79,6 +79,7 @@ public class EDRemittance {
             ",?" +
             ",?" +
             ",?" +
+            ",?" +          
             ",?)";
         BindingContainer bindings = getBindings();
         OperationBinding operationBinding = bindings.getOperationBinding("callCreateReceiptProc");
@@ -87,10 +88,13 @@ public class EDRemittance {
         Map params =  operationBinding.getParamsMap();
         params.put("sqlReturnType", Types.VARCHAR);
         params.put("stmt", stmt);
-        Object result = operationBinding.execute();
-        System.out.println(result+" ");
+        String[] result =(String[]) operationBinding.execute();
+        System.out.println(result[0]+" "+result[1]);
         if (result != null) {
-            CommonUtil.showMessage(result+"", 111);
+            if (result[0].equals("S"))
+                CommonUtil.showMessage(result[1]+"", 111);
+            else
+                CommonUtil.showMessage(result[1]+"", 112);
         }
     }
 

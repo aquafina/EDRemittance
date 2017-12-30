@@ -17,16 +17,16 @@ public class AppModuleClient extends ApplicationModuleImpl implements AppModule 
     }
 
 
-    public String callCreateReceiptProc(int sqlReturnType, String stmt) {
-        Object _ret =
-            this.riInvokeExportedMethod(this,"callCreateReceiptProc",new String [] {"int","java.lang.String"},new Object[] {new Integer(sqlReturnType), stmt});
-        return (String)_ret;
-    }
-
     public void setSessionValues(String orgId, String userId, String respId,
                                  String respAppl) {
         Object _ret =
             this.riInvokeExportedMethod(this,"setSessionValues",new String [] {"java.lang.String","java.lang.String","java.lang.String","java.lang.String"},new Object[] {orgId, userId, respId, respAppl});
         return;
+    }
+
+    public String[] callCreateReceiptProc(int sqlReturnType, String stmt) {
+        Object _ret =
+            this.riInvokeExportedMethod(this,"callCreateReceiptProc",new String [] {"int","java.lang.String"},new Object[] {new Integer(sqlReturnType), stmt});
+        return (String[])_ret;
     }
 }

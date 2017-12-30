@@ -181,10 +181,10 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     }
     
     
-    public String callCreateReceiptProc(int sqlReturnType, String stmt){
+    public String[] callCreateReceiptProc(int sqlReturnType, String stmt){
         System.out.println(sqlReturnType+ " "+stmt);
         CallableStatement cst = null;
-        String status = null;
+        String []status = new String[2];
         try {
             //Creating sql statement
             
@@ -230,10 +230,11 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             cst.setInt(15,222);
             System.out.println("resp appl id = "+222);
             cst.registerOutParameter(16, sqlReturnType);
+            cst.registerOutParameter(17, sqlReturnType);
             cst.execute();
             //Finally get returned value
-            status = cst.getString(16);
-            
+            status[1] = cst.getString(16);
+            status[0] = cst.getString(17);
 //            getDBTransaction().commit();
         } catch (SQLException e) {
             throw new JboException(e.getMessage());

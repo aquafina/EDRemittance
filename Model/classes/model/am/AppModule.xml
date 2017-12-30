@@ -70,17 +70,6 @@
     Reversed="false"/>
   <ClientInterface>
     <Method
-      Name="callCreateReceiptProc">
-      <Return
-        Type="java.lang.String"/>
-      <Parameter
-        Name="sqlReturnType"
-        Type="int"/>
-      <Parameter
-        Name="stmt"
-        Type="java.lang.String"/>
-    </Method>
-    <Method
       Name="setSessionValues">
       <Return
         Type="void"/>
@@ -95,6 +84,17 @@
         Type="java.lang.String"/>
       <Parameter
         Name="respAppl"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="callCreateReceiptProc">
+      <Return
+        Type="java.lang.String[]"/>
+      <Parameter
+        Name="sqlReturnType"
+        Type="int"/>
+      <Parameter
+        Name="stmt"
         Type="java.lang.String"/>
     </Method>
   </ClientInterface>

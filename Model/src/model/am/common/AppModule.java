@@ -6,8 +6,9 @@ import oracle.jbo.ApplicationModule;
 // ---    Sun Dec 17 17:34:35 PKT 2017
 // ---------------------------------------------------------------------
 public interface AppModule extends ApplicationModule {
-    String callCreateReceiptProc(int sqlReturnType, String stmt);
 
     void setSessionValues(String orgId, String userId, String respId,
                           String respAppl);
+
+    String[] callCreateReceiptProc(int sqlReturnType, String stmt);
 }
