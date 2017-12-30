@@ -89,7 +89,9 @@ public class EDRemittance {
         params.put("stmt", stmt);
         Object result = operationBinding.execute();
         System.out.println(result+" ");
-        
+        if (result != null) {
+            CommonUtil.showMessage(result+"", 111);
+        }
     }
 
     public BindingContainer getBindings() {
