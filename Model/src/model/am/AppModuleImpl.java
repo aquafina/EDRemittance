@@ -185,6 +185,9 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
         System.out.println(sqlReturnType+ " "+stmt);
         CallableStatement cst = null;
         String []status = new String[2];
+        int user_id = Integer.parseInt(ADFContext.getCurrent().getSessionScope().get("user_id")!=null?ADFContext.getCurrent().getSessionScope().get("user_id").toString():"0") ;
+        int resp_id = Integer.parseInt(ADFContext.getCurrent().getSessionScope().get("resp_id")!=null?ADFContext.getCurrent().getSessionScope().get("resp_id").toString():"0") ;
+        int resp_appl_id = Integer.parseInt(ADFContext.getCurrent().getSessionScope().get("resp_appl_id")!=null?ADFContext.getCurrent().getSessionScope().get("resp_appl_id").toString():"0") ;
         try {
             //Creating sql statement
             
@@ -224,10 +227,10 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             System.out.println("Receipt Category = "+currRow.getAttribute("ReceiptCategory"));
             cst.setString(12, currRow.getAttribute("ExportCategory")!=null?currRow.getAttribute("ExportCategory").toString():null);
             System.out.println("Export Category = "+currRow.getAttribute("ExportCategory"));
-            cst.setInt(13,1110);//USER ID
+            cst.setInt(13,user_id);//USER ID
             System.out.println("user id = "+1110);
-            cst.setInt(14,20678);
-            cst.setInt(15,222);
+            cst.setInt(14,resp_id);
+            cst.setInt(15,resp_appl_id);
             System.out.println("resp appl id = "+222);
             cst.registerOutParameter(16, sqlReturnType);
             cst.registerOutParameter(17, sqlReturnType);
