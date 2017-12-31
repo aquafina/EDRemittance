@@ -41,24 +41,36 @@
       </SchemaBasedProperties>
     </Properties>
   </Variable>
+  <Variable
+    Name="p_remit_header_id"
+    Kind="where"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
   <SQLQuery>
     <![CDATA[SELECT   hdr.comm_inv_date, hdr.comm_inv_num, hdr.customer_id,
-         /*NVL (  SUM (line.quantity * line.unit_selling_price)
-              + SUM (hdr.freight_charges)
-              + SUM (hdr.insurance_charges)
-              + SUM (hdr.other_charges)
-              + SUM (hdr.discount),
-              0
-             )*/ to_number(pwc_ed_comm_inv_amount(hdr.comm_inv_num,hou.organization_id)) due_amount,
-             sum(hdr.discount) discount
+         nvl(TO_NUMBER (pwc_ed_comm_inv_amount (hdr.comm_inv_num,
+                                            hou.organization_id
+                                           )
+                   ),0) due_amount
     FROM pwc_ed_commercial_invoice_hdr hdr,
-         hr_organization_units hou,
-         pwc_ed_commercial_invoice_l line
+         hr_organization_units hou
    WHERE hdr.org_id = hou.organization_id
-     AND hdr.header_id = line.header_id
+     AND hdr.comm_inv_num NOT IN (
+            SELECT comm_inv_num
+              FROM pwc_ed_remittance_hdr remit_hdr,
+                   pwc_ed_remittance_line remit_line
+             WHERE remit_hdr.remittance_header_id =
+                                                remit_line.remittance_header_id
+               AND remit_line.remittance_header_id =
+                      NVL (:p_remit_header_id, remit_hdr.remittance_header_id))
      AND hou.organization_id = NVL (:p_org_id, hou.organization_id)
-     AND hdr.customer_id = NVL (:p_cust_id, hdr.customer_id)
-GROUP BY hdr.comm_inv_date, hdr.comm_inv_num, hdr.customer_id, hou.organization_id]]>
+     AND hdr.customer_id = NVL (:p_cust_id, hdr.customer_id)]]>
   </SQLQuery>
   <ViewAttribute
     Name="CommInvDate"
@@ -130,26 +142,6 @@ GROUP BY hdr.comm_inv_date, hdr.comm_inv_num, hdr.customer_id, hou.organization_
     ColumnType="NUMBER"
     AliasName="DUE_AMOUNT"
     Expression="DUE_AMOUNT"
-    SQLType="NUMERIC">
-    <DesignTime>
-      <Attr Name="_DisplaySize" Value="39"/>
-    </DesignTime>
-    <Properties>
-      <SchemaBasedProperties>
-        <DISPLAYHINT
-          Value="Hide"/>
-      </SchemaBasedProperties>
-    </Properties>
-  </ViewAttribute>
-  <ViewAttribute
-    Name="Discount"
-    IsUpdateable="false"
-    IsPersistent="false"
-    PrecisionRule="true"
-    Type="oracle.jbo.domain.Number"
-    ColumnType="NUMBER"
-    AliasName="DISCOUNT"
-    Expression="DISCOUNT"
     SQLType="NUMERIC">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>

@@ -347,7 +347,7 @@ AND HPS.LOCATION_ID=HL.LOCATION_ID
 and EDRemittanceEO.receipt_method_id = arm.receipt_method_id
 and EDRemittanceEO.org_id = hou.organization_id 
 and EDRemittanceEO.org_id = nvl(:p_org_id,EDRemittanceEO.org_id)
-/*and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITTANCE_HEADER_ID)*/]]>
+and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITTANCE_HEADER_ID)]]>
   </SQLQuery>
   <EntityUsage
     Name="EDRemittanceEO"

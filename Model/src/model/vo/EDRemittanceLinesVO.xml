@@ -46,6 +46,9 @@
       <PIMap Variable="p_cust_id">
         <TransientExpression><![CDATA[EDRemittanceVO.CustomerId]]></TransientExpression>
       </PIMap>
+      <PIMap Variable="p_remit_header_id">
+        <TransientExpression><![CDATA[EDRemittanceVO.RemittanceHeaderId]]></TransientExpression>
+      </PIMap>
     </ParameterMap>
   </ViewAccessor>
   <ListBinding
