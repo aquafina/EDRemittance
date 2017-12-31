@@ -239,6 +239,16 @@ public class EDRemittanceEOImpl extends EntityImpl {
                 obj.setReceiptMethodId((Number)value);
             }
         }
+        ,
+        ReceiptStatus {
+            public Object get(EDRemittanceEOImpl obj) {
+                return obj.getReceiptStatus();
+            }
+
+            public void put(EDRemittanceEOImpl obj, Object value) {
+                obj.setReceiptStatus((String)value);
+            }
+        }
         ;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
@@ -289,6 +299,7 @@ public class EDRemittanceEOImpl extends EntityImpl {
     public static final int REQUESTID = AttributesEnum.RequestId.index();
     public static final int BANKACCOUNTID = AttributesEnum.BankAccountId.index();
     public static final int RECEIPTMETHODID = AttributesEnum.ReceiptMethodId.index();
+    public static final int RECEIPTSTATUS = AttributesEnum.ReceiptStatus.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -645,6 +656,22 @@ public class EDRemittanceEOImpl extends EntityImpl {
         setAttributeInternal(RECEIPTMETHODID, value);
     }
 
+
+    /**
+     * Gets the attribute value for ReceiptStatus, using the alias name ReceiptStatus.
+     * @return the ReceiptStatus
+     */
+    public String getReceiptStatus() {
+        return (String)getAttributeInternal(RECEIPTSTATUS);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for ReceiptStatus.
+     * @param value value to set the ReceiptStatus
+     */
+    public void setReceiptStatus(String value) {
+        setAttributeInternal(RECEIPTSTATUS, value);
+    }
 
     /**
      * getAttrInvokeAccessor: generated method. Do not modify.

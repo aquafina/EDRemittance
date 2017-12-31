@@ -45,7 +45,8 @@
                               columns="#{bindings.PrcNumber.hints.displayWidth}"
                               maximumLength="#{bindings.PrcNumber.hints.precision}"
                               shortDesc="#{bindings.PrcNumber.hints.tooltip}"
-                              id="it11" contentStyle="width:200px;">
+                              id="it11" contentStyle="width:200px;"
+                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.PrcNumber.validator}"/>
                   <af:convertNumber groupingUsed="false"
                                     pattern="#{bindings.PrcNumber.format}"/>
@@ -65,7 +66,8 @@
                                       shortDesc="#{bindings.CustomerName.hints.tooltip}"
                                       contentStyle="width:200px;"
                                       showRequired="true"
-                                      required="#{bindings.CustomerName.hints.mandatory}">
+                                      required="#{bindings.CustomerName.hints.mandatory}"
+                                      disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.CustomerName.validator}"/>
                 </af:inputListOfValues>
               </af:gridCell>
@@ -77,7 +79,8 @@
                 <af:selectOneChoice value="#{bindings.PrcStatus1.inputValue}"
                                     required="#{bindings.PrcStatus1.hints.mandatory}"
                                     shortDesc="#{bindings.PrcStatus1.hints.tooltip}"
-                                    id="soc1">
+                                    id="soc1"
+                                    disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:selectItems value="#{bindings.PrcStatus1.items}" id="si1"/>
                 </af:selectOneChoice>
               </af:gridCell>
@@ -92,7 +95,8 @@
                               maximumLength="#{bindings.CustomerBillToAddress.hints.precision}"
                               shortDesc="#{bindings.CustomerBillToAddress.hints.tooltip}"
                               id="it1" contentStyle="width:200px;"
-                              partialTriggers="customerNameId">
+                              partialTriggers="customerNameId"
+                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.CustomerBillToAddress.validator}"/>
                 </af:inputText>
               </af:gridCell>
@@ -124,7 +128,8 @@
                                       shortDesc="#{bindings.ReceiptMethodName.hints.tooltip}"
                                       contentStyle="width:200px;"
                                       showRequired="true"
-                                      required="#{bindings.ReceiptMethodName.hints.mandatory}">
+                                      required="#{bindings.ReceiptMethodName.hints.mandatory}"
+                                      disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.ReceiptMethodName.validator}"/>
                 </af:inputListOfValues>
               </af:gridCell>
@@ -138,7 +143,8 @@
                               columns="#{bindings.ReceiptNumber.hints.displayWidth}"
                               maximumLength="#{bindings.ReceiptNumber.hints.precision}"
                               shortDesc="#{bindings.ReceiptNumber.hints.tooltip}"
-                              id="it5" contentStyle="width:200px;">
+                              id="it5" contentStyle="width:200px;"
+                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.ReceiptNumber.validator}"/>
                 </af:inputText>
               </af:gridCell>
@@ -156,7 +162,8 @@
                                       shortDesc="#{bindings.BankName.hints.tooltip}"
                                       contentStyle="width:200px;"
                                       showRequired="true"
-                                      required="#{bindings.BankName.hints.mandatory}">
+                                      required="#{bindings.BankName.hints.mandatory}"
+                                      disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.BankName.validator}"/>
                 </af:inputListOfValues>
               </af:gridCell>
@@ -173,7 +180,8 @@
                                       shortDesc="#{bindings.ReceiptCategory.hints.tooltip}"
                                       contentStyle="width:200px;"
                                       showRequired="false"
-                                      required="#{bindings.ReceiptCategory.hints.mandatory}">
+                                      required="#{bindings.ReceiptCategory.hints.mandatory}"
+                                      disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.ReceiptCategory.validator}"/>
                 </af:inputListOfValues>
               </af:gridCell>
@@ -188,7 +196,8 @@
                               maximumLength="#{bindings.BankAccountName.hints.precision}"
                               shortDesc="#{bindings.BankAccountName.hints.tooltip}"
                               id="it3" contentStyle="width:200px;"
-                              partialTriggers="bankNameId">
+                              partialTriggers="bankNameId"
+                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.BankAccountName.validator}"/>
                 </af:inputText>
               </af:gridCell>
@@ -204,7 +213,8 @@
                                       columns="#{bindings.ExportCategory.hints.displayWidth}"
                                       shortDesc="#{bindings.ExportCategory.hints.tooltip}"
                                       contentStyle="width:200px;"
-                                      showRequired="false">
+                                      showRequired="false"
+                                      disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.ExportCategory.validator}"/>
                 </af:inputListOfValues>
               </af:gridCell>
@@ -220,7 +230,8 @@
                               maximumLength="#{bindings.BankBranchName.hints.precision}"
                               shortDesc="#{bindings.BankBranchName.hints.tooltip}"
                               id="it4" contentStyle="width:200px;"
-                              partialTriggers="bankNameId">
+                              partialTriggers="bankNameId"
+                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.BankBranchName.validator}"/>
                 </af:inputText>
               </af:gridCell>
@@ -238,7 +249,8 @@
                                       contentStyle="width:200px;"
                                       showRequired="#{bindings.Currency.inputValue!='BDT'}"
                                       partialTriggers="currencyId"
-                                      returnPopupListener="#{backingBeanScope.EDRemittanceBean.exchangeTypeReturnPopupListener}">
+                                      returnPopupListener="#{backingBeanScope.EDRemittanceBean.exchangeTypeReturnPopupListener}"
+                                      disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.ExchangeType.validator}"/>
                 </af:inputListOfValues>
               </af:gridCell>
@@ -256,7 +268,8 @@
                                       columns="#{bindings.Currency.hints.displayWidth}"
                                       shortDesc="#{bindings.Currency.hints.tooltip}"
                                       contentStyle="width:200px;"
-                                      showRequired="false" autoSubmit="true">
+                                      showRequired="false" autoSubmit="true"
+                                      disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.Currency.validator}"/>
                 </af:inputListOfValues>
               </af:gridCell>
@@ -271,7 +284,7 @@
                               maximumLength="#{bindings.ExchangeRate.hints.precision}"
                               shortDesc="#{bindings.ExchangeRate.hints.tooltip}"
                               id="it8" contentStyle="width:200px;"
-                              disabled="#{bindings.ExchangeType.inputValue=='Corporate'}"
+                              disabled="#{bindings.ExchangeType.inputValue=='Corporate' or bindings.ReceiptStatus.inputValue==&quot;S&quot;}"
                               binding="#{backingBeanScope.EDRemittanceBean.exchangeRateInputText}"
                               partialTriggers="exchangeTypeId">
                   <f:validator binding="#{bindings.ExchangeRate.validator}"/>
@@ -289,7 +302,8 @@
                               required="true"
                               shortDesc="#{bindings.GlDate.hints.tooltip}"
                               id="id1" contentStyle="width:200px;"
-                              showRequired="false" autoSubmit="true">
+                              showRequired="false" autoSubmit="true"
+                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                   <f:validator binding="#{bindings.GlDate.validator}"/>
                   <af:convertDateTime pattern="#{bindings.GlDate.format}"/>
                 </af:inputDate>
@@ -303,7 +317,11 @@
               </af:gridCell>
             </af:gridRow>
             <af:gridRow marginTop="5px" height="auto" id="gridRow2">
-              <af:gridCell marginStart="5px" width="20%" id="gridCell3"/>
+              <af:gridCell marginStart="5px" width="20%" id="gridCell3"
+                           rendered="false">
+                <af:outputText value="#{bindings.ReceiptStatus.inputValue}"
+                               id="ot8"/>
+              </af:gridCell>
               <af:gridCell marginStart="5px" width="30%" id="gridCell8"/>
               <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
                            id="gridCell9"/>
@@ -319,7 +337,8 @@
                                   disabled="#{!bindings.Delete.enabled}"
                                   id="cb2"/>
                 <af:commandButton text="Create Receipt" id="commandButton3"
-                                  actionListener="#{backingBeanScope.EDRemittanceBean.createReceiptAPIActionListener}"/>
+                                  actionListener="#{backingBeanScope.EDRemittanceBean.createReceiptAPIActionListener}"
+                                  disabled='#{bindings.ReceiptStatus.inputValue=="S"}'/>
               </af:gridCell>
             </af:gridRow>
           </af:panelGridLayout>
@@ -327,16 +346,17 @@
                           inlineStyle="width:100%; height:25px; background-color:ActiveCaption;"/>
           <af:panelGroupLayout id="pgl4">
             <af:commandButton text="New"
-                              disabled="#{bindings.EDRemittanceVO3Iterator.estimatedRowCount&lt;=0}"
+                              disabled="#{bindings.EDRemittanceVO3Iterator.estimatedRowCount&lt;=0  or bindings.ReceiptStatus.inputValue==&quot;S&quot;}"
                               id="cb4"
                               actionListener="#{bindings.CreateInsert1.execute}"
-                              partialTriggers="pgl2"/>
+                              partialTriggers="pgl2 commandButton3"/>
             <af:commandButton actionListener="#{bindings.Commit.execute}"
-                              text="Save" disabled="false" id="cb5"/>
+                              text="Save"
+                              disabled="#{bindings.ReceiptStatus.inputValue==&quot;S&quot;}" id="cb5"/>
+            <af:commandButton actionListener="#{bindings.Delete.execute}"
+                              text="Delete"
+                              disabled="#{!bindings.Delete.enabled or bindings.ReceiptStatus.inputValue==&quot;S&quot;}" id="cb3"/>
           </af:panelGroupLayout>
-          <af:commandButton actionListener="#{bindings.Delete.execute}"
-                            text="Delete" disabled="#{!bindings.Delete.enabled}"
-                            id="cb3"/>
           <af:table value="#{bindings.EDRemittanceLinesVO3.collectionModel}"
                     var="row" rows="#{bindings.EDRemittanceLinesVO3.rangeSize}"
                     emptyText="#{bindings.EDRemittanceLinesVO3.viewable ? 'No data to display.' : 'Access Denied.'}"
@@ -363,7 +383,8 @@
                                     required="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.mandatory}"
                                     columns="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.displayWidth}"
                                     shortDesc="#{bindings.EDRemittanceLinesVO3.hints.CommInvNum.tooltip}"
-                                    valueChangeListener="#{backingBeanScope.EDRemittanceBean.commInvNoValueChangeListener}">
+                                    valueChangeListener="#{backingBeanScope.EDRemittanceBean.commInvNoValueChangeListener}"
+                                    disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                 <f:validator binding="#{row.bindings.CommInvNum.validator}"/>
               </af:inputListOfValues>
             </af:column>
@@ -396,7 +417,8 @@
                             columns="#{bindings.EDRemittanceLinesVO3.hints.Discount.displayWidth}"
                             maximumLength="#{bindings.EDRemittanceLinesVO3.hints.Discount.precision}"
                             shortDesc="#{bindings.EDRemittanceLinesVO3.hints.Discount.tooltip}"
-                            id="it2">
+                            id="it2"
+                            disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
                 <f:validator binding="#{row.bindings.Discount.validator}"/>
                 <af:convertNumber groupingUsed="false"
                                   pattern="#{bindings.EDRemittanceLinesVO3.hints.Discount.format}"/>

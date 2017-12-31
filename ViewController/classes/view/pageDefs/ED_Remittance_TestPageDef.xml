@@ -137,5 +137,10 @@
     </attributeValues>
     <action IterBinding="EDRemittanceVO3Iterator" id="Delete"
             RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="ReceiptStatus">
+      <AttrNames>
+        <Item Value="ReceiptStatus"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

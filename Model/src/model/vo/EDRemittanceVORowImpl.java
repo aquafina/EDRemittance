@@ -246,6 +246,16 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
             }
         }
         ,
+        ReceiptStatus {
+            public Object get(EDRemittanceVORowImpl obj) {
+                return obj.getReceiptStatus();
+            }
+
+            public void put(EDRemittanceVORowImpl obj, Object value) {
+                obj.setReceiptStatus((String)value);
+            }
+        }
+        ,
         BankAccountName {
             public Object get(EDRemittanceVORowImpl obj) {
                 return obj.getBankAccountName();
@@ -475,6 +485,7 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
     public static final int REMITTANCEHEADERID = AttributesEnum.RemittanceHeaderId.index();
     public static final int REQUESTID = AttributesEnum.RequestId.index();
     public static final int STATUS = AttributesEnum.Status.index();
+    public static final int RECEIPTSTATUS = AttributesEnum.ReceiptStatus.index();
     public static final int BANKACCOUNTNAME = AttributesEnum.BankAccountName.index();
     public static final int BANKNAME = AttributesEnum.BankName.index();
     public static final int BANKBRANCHNAME = AttributesEnum.BankBranchName.index();
@@ -974,13 +985,37 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
     }
 
     /**
+     * Gets the attribute value for RECEIPT_STATUS using the alias name ReceiptStatus.
+     * @return the RECEIPT_STATUS
+     */
+    public String getReceiptStatus() {
+        return (String) getAttributeInternal(RECEIPTSTATUS);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for RECEIPT_STATUS using the alias name ReceiptStatus.
+     * @param value value to set the RECEIPT_STATUS
+     */
+    public void setReceiptStatus(String value) {
+        setAttributeInternal(RECEIPTSTATUS, value);
+    }
+
+    /**
      * Gets the attribute value for EXCHANGE_RATE using the alias name ExchangeRate.
      * @return the EXCHANGE_RATE
      */
     public String getExchangeRate() {
-        if (getAttributeInternal(EXCHANGERATE)!=null)
-            return (String) getAttributeInternal(EXCHANGERATE);
-        else return "0";
+//        if (getAttributeInternal(EXCHANGETYPE)!=null)
+//        {
+//            if (getAttributeInternal(EXCHANGETYPE).equals("Corporate"))
+//                return null;
+//            else
+//            {
+                if (getAttributeInternal(EXCHANGERATE)!=null)
+                    return (String) getAttributeInternal(EXCHANGERATE);
+                else return "0";
+//            }
+//        }
     }
 
     /**

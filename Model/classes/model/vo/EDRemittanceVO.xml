@@ -306,7 +306,8 @@
        EDRemittanceEO.RECEIPT_NUMBER, 
        EDRemittanceEO.REMITTANCE_HEADER_ID, 
        EDRemittanceEO.REQUEST_ID, 
-       EDRemittanceEO.STATUS
+       EDRemittanceEO.STATUS,
+       EDRemittanceEO.RECEIPT_STATUS
        ,cba.bank_account_name
        ,cbb.BANK_NAME, 
        cbb.bank_branch_name
@@ -535,6 +536,12 @@ and EDRemittanceEO.org_id = nvl(:p_org_id,EDRemittanceEO.org_id)
     EntityUsage="EDRemittanceEO"
     AliasName="STATUS"/>
   <ViewAttribute
+    Name="ReceiptStatus"
+    PrecisionRule="true"
+    EntityAttrName="ReceiptStatus"
+    EntityUsage="EDRemittanceEO"
+    AliasName="RECEIPT_STATUS"/>
+  <ViewAttribute
     Name="BankAccountName"
     IsPersistent="false"
     IsNotNull="true"
@@ -662,7 +669,6 @@ and EDRemittanceEO.org_id = nvl(:p_org_id,EDRemittanceEO.org_id)
   </ViewAttribute>
   <ViewAttribute
     Name="RemittanceBankAcctId"
-    IsUpdateable="false"
     IsPersistent="false"
     IsNotNull="true"
     PrecisionRule="true"

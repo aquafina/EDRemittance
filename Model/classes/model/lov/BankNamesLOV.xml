@@ -148,6 +148,12 @@ and  cbaua.bank_acct_use_id = armaa.REMIT_BANK_ACCT_USE_ID
     <DesignTime>
       <Attr Name="_DisplaySize" Value="16"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="ReceiptMethodId"

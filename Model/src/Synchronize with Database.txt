@@ -1,0 +1,16 @@
+The following Synchronization Actions were performed successfully:
+
+Entity :EDRemittanceEO
+  Attribute :ExchangeRate
+    Change Precision to 100
+  Attribute :CreationDate
+    Change Column type to DATE
+  Attribute :LastUpdateDate
+    Change Column type to DATE
+  Attribute :ReceiptNumber
+    Change Precision to 30
+  Attribute :RemittanceHeaderId
+    Change Column type to NUMBER
+    Change Precision to 0
+    Change Primary Key to:false
+  Remove Key Constraint: EdremittanceeoPrimaryKey

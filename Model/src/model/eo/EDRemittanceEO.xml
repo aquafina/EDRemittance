@@ -20,14 +20,13 @@
   <Attribute
     Name="RemittanceHeaderId"
     IsUpdateable="while_insert"
-    Precision="255"
     ColumnName="REMITTANCE_HEADER_ID"
     SQLType="NUMERIC"
     Type="java.lang.String"
-    ColumnType="VARCHAR2"
+    ColumnType="NUMBER"
     TableName="PWC_ED_REMITTANCE_HDR"
-    PrimaryKey="true"
-    RetrievedOnInsert="true">
+    RetrievedOnInsert="true"
+    PrimaryKey="true">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>
     </DesignTime>
@@ -98,7 +97,7 @@
     Type="java.lang.String"
     ColumnType="VARCHAR2"
     TableName="PWC_ED_REMITTANCE_HDR"
-    Precision="255">
+    Precision="30">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>
     </DesignTime>
@@ -131,7 +130,7 @@
     ColumnName="CREATION_DATE"
     SQLType="TIMESTAMP"
     Type="oracle.jbo.domain.Timestamp"
-    ColumnType="TIMESTAMP"
+    ColumnType="DATE"
     TableName="PWC_ED_REMITTANCE_HDR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="7"/>
@@ -153,7 +152,7 @@
     ColumnName="LAST_UPDATE_DATE"
     SQLType="TIMESTAMP"
     Type="oracle.jbo.domain.Timestamp"
-    ColumnType="TIMESTAMP"
+    ColumnType="DATE"
     TableName="PWC_ED_REMITTANCE_HDR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="7"/>
@@ -215,7 +214,7 @@
     TableName="PWC_ED_REMITTANCE_HDR"
     DefaultValue="0"
     RetrievedOnInsert="true"
-    Precision="255">
+    Precision="100">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>
     </DesignTime>
@@ -263,6 +262,18 @@
     TableName="PWC_ED_REMITTANCE_HDR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ReceiptStatus"
+    Precision="1"
+    ColumnName="RECEIPT_STATUS"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PWC_ED_REMITTANCE_HDR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
     </DesignTime>
   </Attribute>
   <Key

@@ -217,7 +217,9 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             System.out.println("Receipt Number = "+currRow.getAttribute("ReceiptNumber").toString());
             cst.setString(7, currRow.getAttribute("ExchangeType").toString());
             System.out.println("Exchange Type = "+currRow.getAttribute("ExchangeType").toString());
-            cst.setDouble(8,Double.parseDouble(currRow.getAttribute("ExchangeRate").toString()));
+            if (currRow.getAttribute("ExchangeType").toString().equals("Corporate"))
+              cst.setString(8, null);
+            else cst.setDouble(8,Double.parseDouble(currRow.getAttribute("ExchangeRate").toString()));
             System.out.println("Exchange Rate = "+Double.parseDouble(currRow.getAttribute("ExchangeRate").toString()));
             cst.setInt(9, Integer.parseInt(currRow.getAttribute("RemittanceBankAcctId").toString()));
             System.out.println("Bank Account Id = "+Integer.parseInt(currRow.getAttribute("RemittanceBankAcctId").toString()));
@@ -238,7 +240,12 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             //Finally get returned value
             status[1] = cst.getString(16);
             status[0] = cst.getString(17);
-//            getDBTransaction().commit();
+            //getDBTransaction().commit();
+//            getDBTransaction().closeTransaction();
+            EDRemittanceVO.executeQuery();
+            currRow = EDRemittanceVO.getCurrentRow();
+            System.out.println("Receipt status: "+currRow.getAttribute("ReceiptStatus"));
+            //getDBTransaction().commit();
         } catch (SQLException e) {
             throw new JboException(e.getMessage());
         } catch (ParseException e) {
