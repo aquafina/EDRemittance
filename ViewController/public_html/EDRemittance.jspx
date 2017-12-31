@@ -334,7 +334,7 @@
                                   text="Save" disabled="false" id="cb1"/>
                 <af:commandButton actionListener="#{bindings.Delete.execute}"
                                   text="Delete"
-                                  disabled="#{!bindings.Delete.enabled}"
+                                  disabled="#{!bindings.Delete.enabled or bindings.ReceiptStatus.inputValue==&quot;S&quot;}"
                                   id="cb2"/>
                 <af:commandButton text="Create Receipt" id="commandButton3"
                                   actionListener="#{backingBeanScope.EDRemittanceBean.createReceiptAPIActionListener}"
