@@ -54,7 +54,7 @@
   </Variable>
   <SQLQuery>
     <![CDATA[SELECT   hdr.comm_inv_date, hdr.comm_inv_num, hdr.customer_id,
-         nvl(TO_NUMBER (pwc_ed_comm_inv_amount (hdr.comm_inv_num,
+         nvl(TO_NUMBER (pwc_ed_comm_inv_amount (hdr.header_id,
                                             hou.organization_id
                                            )
                    ),0) due_amount
@@ -70,7 +70,8 @@
                AND remit_line.remittance_header_id =
                       NVL (:p_remit_header_id, remit_hdr.remittance_header_id))
      AND hou.organization_id = NVL (:p_org_id, hou.organization_id)
-     AND hdr.customer_id = NVL (:p_cust_id, hdr.customer_id)]]>
+     AND hdr.customer_id = NVL (:p_cust_id, hdr.customer_id)
+     and hdr.attribute11 = (select max(comm_hdr.attribute11) from PWC_ED_COMMERCIAL_INVOICE_HDR comm_hdr where comm_hdr.COMM_INV_NUM = hdr.COMM_INV_NUM)]]>
   </SQLQuery>
   <ViewAttribute
     Name="CommInvDate"

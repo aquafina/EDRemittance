@@ -331,14 +331,15 @@
                                   id="commandButton1"
                                   actionListener="#{bindings.CreateInsert.execute}"/>
                 <af:commandButton actionListener="#{bindings.Commit.execute}"
-                                  text="Save" disabled="false" id="cb1"/>
+                                  text="Save"
+                                  disabled="#{bindings.EDRemittanceVO3Iterator.estimatedRowCount&lt;=0}" id="cb1"/>
                 <af:commandButton actionListener="#{bindings.Delete.execute}"
                                   text="Delete"
                                   disabled="#{!bindings.Delete.enabled or bindings.ReceiptStatus.inputValue==&quot;S&quot;}"
                                   id="cb2"/>
                 <af:commandButton text="Create Receipt" id="commandButton3"
                                   actionListener="#{backingBeanScope.EDRemittanceBean.createReceiptAPIActionListener}"
-                                  disabled='#{bindings.ReceiptStatus.inputValue=="S"}'/>
+                                  disabled='#{bindings.EDRemittanceVO3Iterator.estimatedRowCount&lt;=0 or bindings.ReceiptStatus.inputValue=="S"}'/>
               </af:gridCell>
             </af:gridRow>
           </af:panelGridLayout>
