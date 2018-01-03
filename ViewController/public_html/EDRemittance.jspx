@@ -17,13 +17,14 @@
                             value="#{bindings.EDRemittanceVOCriteriaQuery.queryDescriptor}"
                             model="#{bindings.EDRemittanceVOCriteriaQuery.queryModel}"
                             queryListener="#{bindings.EDRemittanceVOCriteriaQuery.processQuery}"
-                            queryOperationListener="#{bindings.EDRemittanceVOCriteriaQuery.processQueryOperation}"/>
+                            queryOperationListener="#{bindings.EDRemittanceVOCriteriaQuery.processQueryOperation}">
+                    <af:panelHeader text="Remittance Header" id="ph1"
+                                    inlineStyle="width:100%; height:25px; background-color:ActiveCaption; color:White;"/>
+                  </af:query>
                 </af:panelHeader>
               </af:panelGroupLayout>
             </af:panelHeader>
           </af:panelGroupLayout>
-          <af:panelHeader text="Remittance Header" id="ph1"
-                          inlineStyle="width:100%; height:25px; background-color:ActiveCaption; color:White;"/>
           <af:panelGridLayout id="pgl2" partialTriggers="qryId1">
             <af:gridRow marginTop="5px" height="auto" id="gr1">
               <af:gridCell marginStart="5px" width="20%" id="gc13">
@@ -36,21 +37,12 @@
                                id="ot10"/>
               </af:gridCell>
               <af:gridCell marginStart="5px" width="20%" id="gc19">
-                <af:outputLabel value="PRC Number" id="ol10"/>
+                <af:outputText value="Remittance Number" id="ot12"/>
               </af:gridCell>
               <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
                            id="gc9">
-                <af:inputText value="#{bindings.PrcNumber.inputValue}"
-                              required="#{bindings.PrcNumber.hints.mandatory}"
-                              columns="#{bindings.PrcNumber.hints.displayWidth}"
-                              maximumLength="#{bindings.PrcNumber.hints.precision}"
-                              shortDesc="#{bindings.PrcNumber.hints.tooltip}"
-                              id="it11" contentStyle="width:200px;"
-                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
-                  <f:validator binding="#{bindings.PrcNumber.validator}"/>
-                  <af:convertNumber groupingUsed="false"
-                                    pattern="#{bindings.PrcNumber.format}"/>
-                </af:inputText>
+                <af:outputText value="#{bindings.RemittanceHeaderId.inputValue}"
+                               id="ot11"/>
               </af:gridCell>
             </af:gridRow>
             <af:gridRow marginTop="5px" height="auto" id="gr6">
@@ -72,17 +64,21 @@
                 </af:inputListOfValues>
               </af:gridCell>
               <af:gridCell marginStart="5px" width="20%" id="gc25">
-                <af:outputLabel value="PRC Status" id="ol11"/>
+                <af:outputLabel value="PRC Number" id="ol10"/>
               </af:gridCell>
               <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
                            id="gc4">
-                <af:selectOneChoice value="#{bindings.PrcStatus1.inputValue}"
-                                    required="#{bindings.PrcStatus1.hints.mandatory}"
-                                    shortDesc="#{bindings.PrcStatus1.hints.tooltip}"
-                                    id="soc1"
-                                    disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
-                  <f:selectItems value="#{bindings.PrcStatus1.items}" id="si1"/>
-                </af:selectOneChoice>
+                <af:inputText value="#{bindings.PrcNumber.inputValue}"
+                              required="#{bindings.PrcNumber.hints.mandatory}"
+                              columns="#{bindings.PrcNumber.hints.displayWidth}"
+                              maximumLength="#{bindings.PrcNumber.hints.precision}"
+                              shortDesc="#{bindings.PrcNumber.hints.tooltip}"
+                              id="it11" contentStyle="width:200px;"
+                              disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
+                  <f:validator binding="#{bindings.PrcNumber.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.PrcNumber.format}"/>
+                </af:inputText>
               </af:gridCell>
             </af:gridRow>
             <af:gridRow marginTop="5px" height="auto" id="gr2">
@@ -101,18 +97,17 @@
                 </af:inputText>
               </af:gridCell>
               <af:gridCell marginStart="5px" width="20%" id="gc23">
-                <af:outputLabel value="Status" id="ol12"/>
+                <af:outputLabel value="PRC Status" id="ol11"/>
               </af:gridCell>
               <af:gridCell marginStart="5px" marginEnd="5px" width="30%"
                            id="gc10">
-                <af:inputText value="#{bindings.Status.inputValue}"
-                              required="#{bindings.Status.hints.mandatory}"
-                              columns="#{bindings.Status.hints.displayWidth}"
-                              maximumLength="#{bindings.Status.hints.precision}"
-                              shortDesc="#{bindings.Status.hints.tooltip}"
-                              id="it10" contentStyle="width:200px;">
-                  <f:validator binding="#{bindings.Status.validator}"/>
-                </af:inputText>
+                <af:selectOneChoice value="#{bindings.PrcStatus1.inputValue}"
+                                    required="#{bindings.PrcStatus1.hints.mandatory}"
+                                    shortDesc="#{bindings.PrcStatus1.hints.tooltip}"
+                                    id="soc1"
+                                    disabled='#{bindings.ReceiptStatus.inputValue=="S"}'>
+                  <f:selectItems value="#{bindings.PrcStatus1.items}" id="si1"/>
+                </af:selectOneChoice>
               </af:gridCell>
             </af:gridRow>
             <af:gridRow marginTop="5px" height="auto" id="gr7">
@@ -309,11 +304,17 @@
                 </af:inputDate>
               </af:gridCell>
               <af:gridCell marginStart="5px" width="20%" id="gridCell6">
-                <af:outputText value="Remittance Number" id="ot12"/>
+                <af:outputLabel value="Status" id="ol12"/>
               </af:gridCell>
               <af:gridCell id="gridCell7">
-                <af:outputText value="#{bindings.RemittanceHeaderId.inputValue}"
-                               id="ot11"/>
+                <af:inputText value="#{bindings.Status.inputValue}"
+                              required="#{bindings.Status.hints.mandatory}"
+                              columns="#{bindings.Status.hints.displayWidth}"
+                              maximumLength="#{bindings.Status.hints.precision}"
+                              shortDesc="#{bindings.Status.hints.tooltip}"
+                              id="it10" contentStyle="width:200px;">
+                  <f:validator binding="#{bindings.Status.validator}"/>
+                </af:inputText>
               </af:gridCell>
             </af:gridRow>
             <af:gridRow marginTop="5px" height="auto" id="gridRow2">
