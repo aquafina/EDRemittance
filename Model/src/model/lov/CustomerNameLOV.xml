@@ -141,6 +141,9 @@ and HCSUA.org_id = nvl(:p_org_id,HCSUA.org_id)]]>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="PartyId"/>
+  </AttrArray>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

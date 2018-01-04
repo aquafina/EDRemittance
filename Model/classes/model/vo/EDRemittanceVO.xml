@@ -48,6 +48,28 @@
       </SchemaBasedProperties>
     </Properties>
   </Variable>
+  <Variable
+    Name="p_customer_name"
+    Kind="where"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="p_receipt_number"
+    Kind="where"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
   <ViewAccessor
     Name="CustomerNameLOV1"
     ViewObjectName="model.lov.CustomerNameLOV">
@@ -99,6 +121,10 @@
       </PIMap>
     </ParameterMap>
   </ViewAccessor>
+  <ViewAccessor
+    Name="ReceiptNumberLOV1"
+    ViewObjectName="model.lov.ReceiptNumberLOV"
+    RowLevelBinds="true"/>
   <ListBinding
     Name="LOV_CustomerName"
     ListVOName="CustomerNameLOV1"
@@ -285,6 +311,24 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
+  <ListBinding
+    Name="LOV_ReceiptNumber"
+    ListVOName="ReceiptNumberLOV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_ReceiptNumber_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ReceiptNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ReceiptNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ReceiptNumber"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery>
     <![CDATA[SELECT EDRemittanceEO.BANK_ACCOUNT_ID, 
        EDRemittanceEO.CREATED_BY, 
@@ -347,7 +391,9 @@ AND HPS.LOCATION_ID=HL.LOCATION_ID
 and EDRemittanceEO.receipt_method_id = arm.receipt_method_id
 and EDRemittanceEO.org_id = hou.organization_id 
 and EDRemittanceEO.org_id = nvl(:p_org_id,EDRemittanceEO.org_id)
-and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITTANCE_HEADER_ID)]]>
+and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITTANCE_HEADER_ID)
+and EDRemittanceEO.receipt_number = nvl(:p_receipt_number,EDRemittanceEO.receipt_number)
+and HP.PARTY_NAME = nvl(:p_customer_name,HP.PARTY_NAME)]]>
   </SQLQuery>
   <EntityUsage
     Name="EDRemittanceEO"
@@ -503,7 +549,15 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
     PrecisionRule="true"
     EntityAttrName="ReceiptNumber"
     EntityUsage="EDRemittanceEO"
-    AliasName="RECEIPT_NUMBER"/>
+    AliasName="RECEIPT_NUMBER"
+    LOVName="LOV_ReceiptNumber">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="RemittanceHeaderId"
     IsUpdateable="while_insert"
@@ -612,6 +666,8 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
       <SchemaBasedProperties>
         <CONTROLTYPE
           Value="input_text_lov"/>
+        <DISPLAYWIDTH
+          Value="30"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -713,11 +769,27 @@ and EDRemittanceEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceEO.REMITT
       Name="vcrow17"
       UpperColumns="1">
       <ViewCriteriaItem
+        Name="ReceiptNumber"
+        ViewAttribute="ReceiptNumber"
+        Operator="="
+        Conjunction="OR"
+        Value=":p_receipt_number"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
         Name="RemittanceHeaderId"
         ViewAttribute="RemittanceHeaderId"
         Operator="="
-        Conjunction="AND"
+        Conjunction="OR"
         Value=":p_header_id"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="CustomerName"
+        ViewAttribute="CustomerName"
+        Operator="="
+        Conjunction="OR"
+        Value=":p_customer_name"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>

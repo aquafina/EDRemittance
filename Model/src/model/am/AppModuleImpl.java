@@ -341,4 +341,12 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     public ViewObjectImpl getRemittanceHeaderIdLOV1() {
         return (ViewObjectImpl)findViewObject("RemittanceHeaderIdLOV1");
     }
+
+    /**
+     * Container's getter for ReceiptNumberLOV1.
+     * @return ReceiptNumberLOV1
+     */
+    public ViewObjectImpl getReceiptNumberLOV1() {
+        return (ViewObjectImpl)findViewObject("ReceiptNumberLOV1");
+    }
 }

@@ -435,6 +435,16 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
                 obj.setAttributeInternal(index(), value);
             }
         }
+        ,
+        ReceiptNumberLOV1 {
+            public Object get(EDRemittanceVORowImpl obj) {
+                return obj.getReceiptNumberLOV1();
+            }
+
+            public void put(EDRemittanceVORowImpl obj, Object value) {
+                obj.setAttributeInternal(index(), value);
+            }
+        }
         ;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
@@ -504,6 +514,7 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
     public static final int RECEIPTMETHODSLOV1 = AttributesEnum.ReceiptMethodsLOV1.index();
     public static final int PRCSTATUSLOV1 = AttributesEnum.PrcStatusLOV1.index();
     public static final int REMITTANCEHEADERIDLOV1 = AttributesEnum.RemittanceHeaderIdLOV1.index();
+    public static final int RECEIPTNUMBERLOV1 = AttributesEnum.ReceiptNumberLOV1.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -1095,6 +1106,13 @@ public class EDRemittanceVORowImpl extends ViewRowImpl {
      */
     public RowSet getRemittanceHeaderIdLOV1() {
         return (RowSet)getAttributeInternal(REMITTANCEHEADERIDLOV1);
+    }
+
+    /**
+     * Gets the view accessor <code>RowSet</code> ReceiptNumberLOV1.
+     */
+    public RowSet getReceiptNumberLOV1() {
+        return (RowSet)getAttributeInternal(RECEIPTNUMBERLOV1);
     }
 
     /**

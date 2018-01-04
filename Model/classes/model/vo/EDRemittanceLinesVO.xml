@@ -51,6 +51,14 @@
       </PIMap>
     </ParameterMap>
   </ViewAccessor>
+  <ViewAccessor
+    Name="CustomerNameLOV1"
+    ViewObjectName="model.lov.CustomerNameLOV"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="ReceiptNumberLOV1"
+    ViewObjectName="model.lov.ReceiptNumberLOV"
+    RowLevelBinds="true"/>
   <ListBinding
     Name="LOV_CommInvNum"
     ListVOName="CommInvNumLOV1"
@@ -105,7 +113,8 @@ EDRemittanceLineEO.ATTRIBUTE1,
        EDRemittanceLineEO.REMITTANCE_LINE_ID, 
        EDRemittanceLineEO.VOUCHER_NUM
 FROM PWC_ED_REMITTANCE_LINE EDRemittanceLineEO
-where EDRemittanceLineEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceLineEO.REMITTANCE_HEADER_ID)]]>
+where 1=1
+and EDRemittanceLineEO.REMITTANCE_HEADER_ID = nvl(:p_header_id,EDRemittanceLineEO.REMITTANCE_HEADER_ID)]]>
   </SQLQuery>
   <EntityUsage
     Name="EDRemittanceLineEO"

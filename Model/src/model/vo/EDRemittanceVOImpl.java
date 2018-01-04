@@ -48,5 +48,37 @@ public class EDRemittanceVOImpl extends ViewObjectImpl {
     public void setp_header_id(Number value) {
         setNamedWhereClauseParam("p_header_id", value);
     }
-  
+
+
+    /**
+     * Returns the bind variable value for p_receipt_number.
+     * @return bind variable value for p_receipt_number
+     */
+    public String getp_receipt_number() {
+        return (String)getNamedWhereClauseParam("p_receipt_number");
+    }
+
+    /**
+     * Sets <code>value</code> for bind variable p_receipt_number.
+     * @param value value to bind as p_receipt_number
+     */
+    public void setp_receipt_number(String value) {
+        setNamedWhereClauseParam("p_receipt_number", value);
+    }
+
+    /**
+     * Returns the bind variable value for p_customer_name.
+     * @return bind variable value for p_customer_name
+     */
+    public String getp_customer_name() {
+        return (String)getNamedWhereClauseParam("p_customer_name");
+    }
+
+    /**
+     * Sets <code>value</code> for bind variable p_customer_name.
+     * @param value value to bind as p_customer_name
+     */
+    public void setp_customer_name(String value) {
+        setNamedWhereClauseParam("p_customer_name", value);
+    }
 }
