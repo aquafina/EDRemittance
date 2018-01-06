@@ -112,11 +112,6 @@
         <Item Value="CustomerBillToAddress"/>
       </AttrNames>
     </attributeValues>
-    <attributeValues IterBinding="EDRemittanceVO3Iterator" id="OrgId">
-      <AttrNames>
-        <Item Value="OrgId"/>
-      </AttrNames>
-    </attributeValues>
     <list IterBinding="EDRemittanceVO3Iterator" StaticList="false"
           Uses="LOV_PrcStatus" id="PrcStatus1" DTSupportsMRU="true"/>
     <attributeValues IterBinding="EDRemittanceVO3Iterator" id="ExchangeRate">

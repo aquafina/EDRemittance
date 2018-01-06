@@ -232,8 +232,8 @@
       </list>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
-      <value n="j2eeWebAppName" v="Application1-ViewController-webapp"/>
-      <value n="j2eeWebContextRoot" v="Application1-ViewController-context-root"/>
+      <value n="j2eeWebAppName" v="PWC_ED_Remittance-ViewController-webapp"/>
+      <value n="j2eeWebContextRoot" v="PWC_ED_Remittance-ViewController-context-root"/>
    </hash>
    <hash n="oracle.jdeveloper.runner.RunConfigurations">
       <hash n="runConfigurationDefinitions">
